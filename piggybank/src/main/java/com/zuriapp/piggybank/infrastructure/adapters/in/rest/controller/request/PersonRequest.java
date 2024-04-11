@@ -10,6 +10,8 @@ import lombok.Data;
 @Builder
 public class PersonRequest {
 
+    private Long id;
+
     @NotNull
     @NotBlank
     @Size( max = 45)

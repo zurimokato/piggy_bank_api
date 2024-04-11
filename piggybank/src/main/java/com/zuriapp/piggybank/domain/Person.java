@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +25,7 @@ public class Person {
     private String phone;
     private Status status;
     private User user;
+    private List<Count> counts;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

@@ -14,6 +14,7 @@ public interface UserRestMapper {
     @Mappings({
             @Mapping(target = "createTime", ignore = true),
             @Mapping(target = "updateTime", ignore = true),
+            @Mapping(target = "person", ignore = true),
     })
     User toDomain(UserRequest request);
 }
