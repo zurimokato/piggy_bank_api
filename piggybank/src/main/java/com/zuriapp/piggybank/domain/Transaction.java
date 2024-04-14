@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 public class Transaction {
     private Long id;
     private String description;
-    private TransactionCategory category;
     private BigDecimal amount;
     private LocalDate date;
     private TransactionType type;
     private Count count;
+    private Category category;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

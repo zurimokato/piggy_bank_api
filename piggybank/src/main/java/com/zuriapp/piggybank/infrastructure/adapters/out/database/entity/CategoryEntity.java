@@ -1,7 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database.entity;
 
-import com.zuriapp.piggybank.domain.enums.CountType;
-import com.zuriapp.piggybank.domain.enums.Currency;
+import com.zuriapp.piggybank.domain.enums.CategoryType;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,22 +10,19 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "COUNTS")
-public class CountEntity {
+@Table(name = "categories")
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private CountType type;
-    private Currency currency;
-    private BigDecimal amount;
-    @ManyToOne
-    @JoinColumn(name = "personas_id")
-    private PersonEntity person;
-
-    @OneToMany
-    private List<TransactionEntity> transactionEntities;
+    private BigDecimal budget;
+    @Enumerated(EnumType.STRING)
+    private CategoryType type;
+    @Column(name = "create_time")
     private LocalDateTime createTime;
+    @Column(name = "update_time")
     private LocalDateTime updateTime;
-
+    @OneToMany
+    private List<TransactionEntity>transactions;
 }

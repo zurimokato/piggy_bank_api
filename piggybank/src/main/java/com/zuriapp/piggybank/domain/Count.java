@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -17,6 +18,7 @@ public class Count {
     private BigDecimal amount;
     private Currency currency;
     private Person person;
+    private List<Transaction> transactions;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 
