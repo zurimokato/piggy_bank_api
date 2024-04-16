@@ -2,8 +2,9 @@ package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 
 import com.zuriapp.piggybank.application.usecase.person.FindPersonByIdUseCase;
+import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.PersonAPI;
-import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.QueryPersonResponse;
+import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.PersonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController implements PersonAPI {
     private final FindPersonByIdUseCase findPersonByIdUseCase;
     @Override
-    public ResponseEntity<QueryPersonResponse> getUser(Long id) throws Exception {
-        QueryPersonResponse response=new QueryPersonResponse();
-        response.setPerson(findPersonByIdUseCase.handle(id));
+    public ResponseEntity<BaseDataResponse<PersonResponse>> getUser(Long id) throws Exception {
+        BaseDataResponse<PersonResponse> response=new BaseDataResponse<>();
+        response.setData(findPersonByIdUseCase.handle(id));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

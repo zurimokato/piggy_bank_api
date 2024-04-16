@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface CountOutPort {
 
-    Count save(Count count);
-    Count getCountById(Long id);
-    Page<Count> getAllCounts(Pageable pageable);
+    Count save(Count count) throws Exception;
+    Count getCountById(Long id)  throws Exception;
+    Page<Count> getAllCountsByPerson(Long id,Pageable pageable) throws Exception;
 }

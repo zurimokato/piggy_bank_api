@@ -1,0 +1,56 @@
+package com.zuriapp.piggybank.infrastructure.adapters.out.database;
+
+import com.zuriapp.piggybank.application.port.out.CategoryOutPutPort;
+import com.zuriapp.piggybank.domain.Category;
+import com.zuriapp.piggybank.infrastructure.adapters.out.config.MessageConfigAdapter;
+import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CategoryEntity;
+import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.CategoryEntityMapper;
+import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.CategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+@RequiredArgsConstructor
+public class CategoryPersistenceAdapter implements CategoryOutPutPort {
+    private final CategoryRepository categoryRepository;
+    private final CategoryEntityMapper mapper;
+    private final MessageConfigAdapter adapter;
+    @Override
+    public Category save(Category category) throws Exception {
+        try{
+            return mapper.toDomain(categoryRepository.save(mapper.toEntity(category)));
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public Category findById(Long id) {
+        return categoryRepository.findById(id).map(mapper::toDomain).orElseThrow(()->new EntityNotFoundException(adapter.notFoundResponse()));
+    }
+
+    @Override
+    public Page<Category> findAll(Pageable pageable) {
+        Page<CategoryEntity>categoryEntityPage=categoryRepository.findAll(pageable);
+        if(categoryEntityPage.isEmpty()){
+            throw new EntityNotFoundException(adapter.notFoundResponse());
+        }
+        return categoryEntityPage.map(mapper::toDomain);
+    }
+
+    @Override
+    public List<Category> findAll() {
+
+        List<CategoryEntity>categoryEntities=categoryRepository.findAll();
+        if(categoryEntities.isEmpty()){
+            throw new EntityNotFoundException(adapter.notFoundResponse());
+        }
+        return categoryEntities.stream().map(mapper::toDomain).toList();
+    }
+}

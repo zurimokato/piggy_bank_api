@@ -25,7 +25,7 @@ public class CountEntity {
     private PersonEntity person;
 
     @OneToMany
-    private List<TransactionEntity> transactionEntities;
+    private List<TransactionEntity> transactions;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 

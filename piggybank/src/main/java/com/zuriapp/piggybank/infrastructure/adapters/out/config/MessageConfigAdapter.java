@@ -19,6 +19,10 @@ public class MessageConfigAdapter {
     }
 
 
+    public String notFoundResponse(){
+        return getMessage("response.notfound.message", Locale.getDefault());
+    }
+
 
     private String getMessage(String code, Locale locale) {
         return messageSource.getMessage(code, null, locale);

@@ -2,12 +2,12 @@ package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 import com.zuriapp.piggybank.application.usecase.person.CreateUserUseCase;
 import com.zuriapp.piggybank.application.usecase.user.FindUserByUserNameUseCase;
+import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.UserAPI;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.PersonRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.UserRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.PersonResponse;
-import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.QueryUserResponse;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -45,9 +45,9 @@ public class UserController implements UserAPI {
     }
 
     @Override
-    public ResponseEntity<QueryUserResponse> getUser(String userName) throws Exception {
-        QueryUserResponse queryUserResponse = new QueryUserResponse();
-        queryUserResponse.setUser(findUserByUserNameUseCase.handle(userName));
+    public ResponseEntity<BaseDataResponse<UserResponse>> getUser(String userName) throws Exception {
+        BaseDataResponse<UserResponse> queryUserResponse = new BaseDataResponse<>();
+        queryUserResponse.setData(findUserByUserNameUseCase.handle(userName));
         return new ResponseEntity<>(queryUserResponse, HttpStatus.OK);
     }
 }
