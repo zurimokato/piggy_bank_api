@@ -10,5 +10,7 @@ public interface UserEntityMapper {
 
     User toDomain(UserEntity source);
 
+
+    @Mapping(target = "person.counts.transactions", ignore = true)
     UserEntity toEntity(User source);
 }

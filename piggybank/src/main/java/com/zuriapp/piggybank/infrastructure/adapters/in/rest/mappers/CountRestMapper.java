@@ -10,8 +10,6 @@ import org.mapstruct.Mapping;
 public interface CountRestMapper {
 
 
-    @Mapping(target = "transactions", ignore = true)
     Count toDomain(CountRequest countRequest);
-    @Mapping(target = "transactions",source ="transactions")
     CountResponse toResponse(Count source);
 }

@@ -18,7 +18,7 @@ public interface TransactionAPI {
 
     @PostMapping()
     ResponseEntity<BaseResponseDTO> createTransaction(@Valid @RequestBody TransactionRequest transactionRequest) throws Exception;
-    @GetMapping()
+    @GetMapping("page")
     ResponseEntity<PageResponseDTO<TransactionResponse>>findTransactionsByCount(@Valid @PathParam("countId") Long countId, Pageable pageable) throws Exception;
     @GetMapping()
     ResponseEntity<BaseDataResponse<TransactionResponse>>findTransactionsById(@Valid @NotNull @PathParam("transactionId") Long transactionId) throws Exception;

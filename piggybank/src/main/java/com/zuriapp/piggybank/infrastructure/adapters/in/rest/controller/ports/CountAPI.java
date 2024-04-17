@@ -20,7 +20,7 @@ public interface CountAPI {
 
     @PostMapping
     ResponseEntity<BaseResponseDTO>createCount(@Valid @RequestBody CountRequest request) throws Exception;
-    @GetMapping()
+    @GetMapping("by-id")
     ResponseEntity<BaseDataResponse<CountResponse>> getCountById(@Valid @NotNull @PathParam("countId") Long countId) throws Exception;
     @GetMapping()
     ResponseEntity<PageResponseDTO<CountResponse>>getCountByPerson(@Valid @NotNull @PathParam("idPerson")Long idPerson, Pageable pageable) throws Exception;

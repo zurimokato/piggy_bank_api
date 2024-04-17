@@ -7,7 +7,6 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 @Data
 public class CountResponse {
 
@@ -17,7 +16,6 @@ public class CountResponse {
     private BigDecimal amount;
     private Currency currency;
     private Person person;
-    private List<TransactionResponse> transactions;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

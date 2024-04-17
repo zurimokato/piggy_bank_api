@@ -20,7 +20,7 @@ import java.util.List;
 public interface CategoryAPI {
     @PostMapping()
     ResponseEntity<BaseResponseDTO>createCategory(@Valid @RequestBody CategoryRequest request) throws Exception;
-    @GetMapping()
+    @GetMapping("/list")
     ResponseEntity<BaseDataResponse<List<CategoryResponse>>> findList() throws Exception;
     @GetMapping("/page")
     ResponseEntity<PageResponseDTO<CategoryResponse>> findPage(Pageable pageable) throws Exception;
