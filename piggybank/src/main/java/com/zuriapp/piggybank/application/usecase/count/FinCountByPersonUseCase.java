@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FinCountByPerson implements IRequestHandler<QueryCountRequest, Page<CountResponse>> {
+public class FinCountByPersonUseCase implements IRequestHandler<QueryCountRequest, Page<CountResponse>> {
     private final CountRestMapper mapper;
     private final CountOutPort port;
     @Override
