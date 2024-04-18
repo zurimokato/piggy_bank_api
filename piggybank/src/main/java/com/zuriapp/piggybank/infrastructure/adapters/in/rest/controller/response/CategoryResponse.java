@@ -6,7 +6,6 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 public class CategoryResponse {
@@ -17,5 +16,4 @@ public class CategoryResponse {
     private BigDecimal budget;
     private LocalDate createTime;
     private LocalDate updateTime;
-    private List<TransactionResponse> transactions;
 }

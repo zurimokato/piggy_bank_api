@@ -2,12 +2,12 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
 import com.zuriapp.piggybank.application.port.out.TransactionOutPutPort;
 import com.zuriapp.piggybank.domain.Transaction;
-import com.zuriapp.piggybank.infrastructure.adapters.out.config.MessageConfigAdapter;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.TransactionEntity;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.TransactionEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.TransactionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,8 @@ import org.springframework.stereotype.Component;
 public class TransactionPersistenceAdapter implements TransactionOutPutPort {
     private final TransactionRepository transactionRepository;
     private final TransactionEntityMapper mapper;
-    private final MessageConfigAdapter messageAdapter;
+    @Value("${response.notfound.message}")
+    private String notFoundMessage;
 
     @Override
     public Transaction save(Transaction transaction) throws Exception {
@@ -32,7 +33,7 @@ public class TransactionPersistenceAdapter implements TransactionOutPutPort {
     @Override
     public Transaction findByTransactionId(Long transactionId) throws EntityNotFoundException {
         return transactionRepository.findById(transactionId).map(mapper::toDomain)
-                .orElseThrow(() -> new EntityNotFoundException(messageAdapter.notFoundResponse()));
+                .orElseThrow(() -> new EntityNotFoundException(notFoundMessage));
 
     }
 
@@ -43,7 +44,7 @@ public class TransactionPersistenceAdapter implements TransactionOutPutPort {
         Page<TransactionEntity> transactionEntities = transactionRepository.findAllByCountId(count, pageable);
 
         if (transactionEntities.isEmpty()) {
-            throw new EntityNotFoundException(messageAdapter.notFoundResponse());
+            throw new EntityNotFoundException(notFoundMessage);
         }
         return transactionEntities.map(mapper::toDomain);
     }

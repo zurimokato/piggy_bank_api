@@ -6,7 +6,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Data
 @Entity
@@ -23,6 +23,4 @@ public class CategoryEntity {
     private LocalDateTime createTime;
     @Column(name = "update_time")
     private LocalDateTime updateTime;
-    @OneToMany
-    private List<TransactionEntity>transactions;
 }

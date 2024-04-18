@@ -2,11 +2,11 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
 import com.zuriapp.piggybank.application.port.out.PersonOutPutPort;
 import com.zuriapp.piggybank.domain.Person;
-import com.zuriapp.piggybank.infrastructure.adapters.out.config.MessageConfigAdapter;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.PersonEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.PersonCrudRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 public class PersonPersistenceAdapter implements PersonOutPutPort {
     private final PersonCrudRepository personCrudRepository;
     private final PersonEntityMapper mapper;
-    private final MessageConfigAdapter adapter;
+    @Value("${response.notfound.message}")
+    private String notFoundMessage;
 
     @Override
     public Person save(Person person) throws Exception {
@@ -29,6 +30,6 @@ public class PersonPersistenceAdapter implements PersonOutPutPort {
     @Override
     public Person findById(Long id) {
         return mapper.toDomain(personCrudRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(adapter.notFoundResponse())));
+                .orElseThrow(() -> new EntityNotFoundException(notFoundMessage)));
     }
 }
