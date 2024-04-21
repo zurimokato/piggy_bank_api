@@ -10,8 +10,12 @@ import org.mapstruct.Mapping;
 public interface PersonEntityMapper {
 
     @Mapping(source = "user",target = "user")
+    @Mapping(target = "user.person", ignore = true)
     Person toDomain(PersonEntity personEntity);
 
     @Mapping(source = "user",target = "user")
+    @Mapping(target = "user.person", ignore = true)
+    @Mapping(target = "user.authorities", ignore = true)
+
     PersonEntity toEntity(Person person);
 }

@@ -1,13 +1,12 @@
 package com.zuriapp.piggybank;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PiggybankApplication {
+public class PiggyBankApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PiggybankApplication.class, args);
+		SpringApplication.run(PiggyBankApplication.class, args);
 	}
 
 }

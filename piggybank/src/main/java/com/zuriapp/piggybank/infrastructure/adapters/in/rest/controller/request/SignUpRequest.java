@@ -9,8 +9,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserRequest {
-    private Long id;
+public class SignUpRequest {
     @NotNull
     @NotBlank
     @Size(min = 2, max = 16)
