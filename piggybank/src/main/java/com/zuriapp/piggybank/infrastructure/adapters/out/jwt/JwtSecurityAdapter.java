@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.jwt;
 
-import com.zuriapp.piggybank.infrastructure.adapters.out.jwt.service.JwtService;
+import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.security.JwtSecurityOutPutPort;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtSecurityAdapter implements JwtSecurityOutPutPort {
 
     @Value("${token.singin.key}")
     private String jwtSigningKey;
@@ -67,6 +67,15 @@ public class JwtServiceImpl implements JwtService {
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+
+    @Override
+    public String extractTokenFromHeader(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7);
+        }
+        return null;
     }
 
 

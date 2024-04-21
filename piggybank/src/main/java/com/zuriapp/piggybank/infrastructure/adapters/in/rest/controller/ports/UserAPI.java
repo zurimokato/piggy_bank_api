@@ -26,4 +26,8 @@ public interface UserAPI {
     ResponseEntity<BaseDataResponse<UserResponse>> getUser(@NotNull @NotBlank @PathParam("userName") String userName) throws Exception;
 
 
+    @GetMapping("/session")
+    ResponseEntity<BaseDataResponse<UserResponse>> getUserByToken(@NotNull @NotBlank @RequestHeader("Authorization") String authorizationHeader) throws Exception;
+
+
 }

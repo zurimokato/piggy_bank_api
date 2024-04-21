@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.config.filter;
 
 import com.zuriapp.piggybank.application.port.out.UserOutPort;
-import com.zuriapp.piggybank.infrastructure.adapters.out.jwt.service.JwtService;
+import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.security.JwtSecurityOutPutPort;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter  extends OncePerRequestFilter {
-    private final JwtService jwtService;
+    private final JwtSecurityOutPutPort jwtSecurityOutPutPort;
     private final UserOutPort userService;
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
@@ -36,12 +36,12 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
             return;
         }
         jwt = authHeader.substring(7);
-        userEmail = jwtService.extractUserName(jwt);
+        userEmail = jwtSecurityOutPutPort.extractUserName(jwt);
         if (StringUtils.isNotEmpty(userEmail)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.userDetailsService()
                     .loadUserByUsername(userEmail);
-            if (jwtService.isTokenValid(jwt, userDetails)) {
+            if (jwtSecurityOutPutPort.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

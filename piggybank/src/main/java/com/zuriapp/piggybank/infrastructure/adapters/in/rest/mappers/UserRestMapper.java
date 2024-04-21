@@ -9,6 +9,8 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring", uses = PersonRestMapper.class)
 public interface UserRestMapper {
+
+    @Mapping(target = "password", ignore = true)
     UserResponse toUserResponse(User user);
 
     @Mappings({

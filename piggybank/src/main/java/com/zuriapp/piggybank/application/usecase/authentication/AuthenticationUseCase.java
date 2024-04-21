@@ -7,7 +7,7 @@ import com.zuriapp.piggybank.domain.enums.Role;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignInRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignUpRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.JwtAuthenticationResponse;
-import com.zuriapp.piggybank.infrastructure.adapters.out.jwt.service.JwtService;
+import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.security.JwtSecurityOutPutPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ public class AuthenticationUseCase implements IAuthenticationUseCase {
 
     private final UserOutPort port;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JwtSecurityOutPutPort jwtSecurityOutPutPort;
     private final AuthenticationManager authenticationManager;
     @Override
     public JwtAuthenticationResponse signUp(SignUpRequest request) throws Exception {
@@ -28,7 +28,7 @@ public class AuthenticationUseCase implements IAuthenticationUseCase {
                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER).build();
         port.save(user);
-        var jwt = jwtService.generateToken(user);
+        var jwt = jwtSecurityOutPutPort.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
@@ -37,7 +37,7 @@ public class AuthenticationUseCase implements IAuthenticationUseCase {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         var user = port.findByUserName(request.getUsername());
-        var jwt = jwtService.generateToken(user);
+        var jwt = jwtSecurityOutPutPort.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 }
