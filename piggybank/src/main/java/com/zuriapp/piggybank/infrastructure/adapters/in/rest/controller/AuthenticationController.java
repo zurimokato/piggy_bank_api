@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 
-import com.zuriapp.piggybank.application.usecase.authentication.AuthenticationUseCase;
+import com.zuriapp.piggybank.application.port.in.authentication.IAuthenticationUseCase;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.AuthenticationAPI;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignInRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignUpRequest;
@@ -20,17 +20,20 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:8100")
 public class AuthenticationController implements AuthenticationAPI {
 
-    private final AuthenticationUseCase authenticationUseCase;
+    private final IAuthenticationUseCase authenticationUseCase;
 
     @Override
     public ResponseEntity<JwtAuthenticationResponse> signUp(SignUpRequest request) throws Exception {
-        return ResponseEntity.ok(authenticationUseCase.signUp(request));
+        JwtAuthenticationResponse response = JwtAuthenticationResponse.builder().token(authenticationUseCase.signUp(request)).build();
+        return ResponseEntity.ok(response);
     }
 
 
     @Override
-    public ResponseEntity<JwtAuthenticationResponse> signIn( SignInRequest request) {
-        return ResponseEntity.ok(authenticationUseCase.signIn(request));
+    public ResponseEntity<JwtAuthenticationResponse> signIn(SignInRequest request) {
+
+        JwtAuthenticationResponse response = JwtAuthenticationResponse.builder().token(authenticationUseCase.signIn(request)).build();
+        return ResponseEntity.ok(response);
     }
 
 }

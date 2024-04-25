@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
 import com.zuriapp.piggybank.application.port.out.UserOutPort;
-import com.zuriapp.piggybank.domain.User;
+import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.UserEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.UserCrudRepository;
 import jakarta.persistence.EntityNotFoundException;

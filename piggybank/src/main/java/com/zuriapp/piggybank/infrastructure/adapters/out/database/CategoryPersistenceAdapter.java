@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
 import com.zuriapp.piggybank.application.port.out.CategoryOutPutPort;
-import com.zuriapp.piggybank.domain.Category;
+import com.zuriapp.piggybank.domain.models.Category;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CategoryEntity;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.CategoryEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.CategoryRepository;

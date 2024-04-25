@@ -1,16 +1,15 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
+import lombok.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtAuthenticationResponse {
+@EqualsAndHashCode(callSuper = true)
+public class JwtAuthenticationResponse extends BaseResponseDTO {
     private String token;
 
 }

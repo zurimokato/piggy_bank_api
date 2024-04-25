@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
 import com.zuriapp.piggybank.application.port.out.TransactionOutPutPort;
-import com.zuriapp.piggybank.domain.Transaction;
+import com.zuriapp.piggybank.domain.models.Transaction;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.TransactionEntity;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.TransactionEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.TransactionRepository;

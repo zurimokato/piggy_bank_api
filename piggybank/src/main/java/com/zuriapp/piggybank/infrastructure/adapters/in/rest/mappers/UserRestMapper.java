@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.mappers;
 
-import com.zuriapp.piggybank.domain.User;
+import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.UserRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.UserResponse;
 import org.mapstruct.Mapper;
@@ -17,6 +17,7 @@ public interface UserRestMapper {
             @Mapping(target = "createTime", ignore = true),
             @Mapping(target = "updateTime", ignore = true),
             @Mapping(target = "person", ignore = true),
+            @Mapping(target = "role", ignore = true),
     })
     User toDomain(UserRequest request);
 }

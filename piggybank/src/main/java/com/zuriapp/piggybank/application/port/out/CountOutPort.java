@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.application.port.out;
 
-import com.zuriapp.piggybank.domain.Count;
+import com.zuriapp.piggybank.domain.models.Count;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

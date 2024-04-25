@@ -1,8 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
-import com.zuriapp.piggybank.application.usecase.transaction.CreateTransactionUseCase;
-import com.zuriapp.piggybank.application.usecase.transaction.FindAllTransactionByCount;
-import com.zuriapp.piggybank.application.usecase.transaction.FindTransactionByIdUseCase;
+import com.zuriapp.piggybank.application.port.in.transaction.CreateTransactionUseCase;
+import com.zuriapp.piggybank.application.port.in.transaction.FindTransactionUseCase;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.domain.dto.PageResponseDTO;
@@ -10,6 +9,7 @@ import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.Tr
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.QueryTransactionRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.TransactionRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.TransactionResponse;
+import com.zuriapp.piggybank.infrastructure.adapters.in.rest.mappers.TransactionRestMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -24,26 +24,26 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:8100")
 public class TransactionController implements TransactionAPI {
     private final CreateTransactionUseCase transactionUseCase;
-    private final FindAllTransactionByCount findAllTransactionByCount;
-    private final FindTransactionByIdUseCase findTransactionByIdUseCase;
+    private final FindTransactionUseCase findTransaction;
+    private final TransactionRestMapper mapper;
 
     @Override
     public ResponseEntity<BaseResponseDTO> createTransaction(TransactionRequest transactionRequest) throws Exception {
-        return new ResponseEntity<>(transactionUseCase.handle(transactionRequest), HttpStatus.OK);
+        transactionUseCase.createTransaction(mapper.toDomain(transactionRequest));
+        return new ResponseEntity<>(BaseResponseDTO.getInstance(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<PageResponseDTO<TransactionResponse>> findTransactionsByCount(Long countId, Pageable pageable) throws Exception {
         PageResponseDTO<TransactionResponse> responseDTO = new PageResponseDTO<>();
-        QueryTransactionRequest request = QueryTransactionRequest.builder().countId(countId).pageable(pageable).build();
-        responseDTO.setData(findAllTransactionByCount.handle(request));
+        responseDTO.setData(findTransaction.findTransactionsByCount(countId,pageable).map(mapper::toResponse));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<BaseDataResponse<TransactionResponse>> findTransactionsById(Long transactionId) throws Exception {
         BaseDataResponse<TransactionResponse> response = new BaseDataResponse<>();
-        response.setData(findTransactionByIdUseCase.handle(transactionId));
+        response.setData(mapper.toResponse(findTransaction.findTransactionById(transactionId)));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

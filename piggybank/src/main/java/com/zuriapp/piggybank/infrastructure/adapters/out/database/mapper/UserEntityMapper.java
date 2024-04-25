@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper;
 
-import com.zuriapp.piggybank.domain.User;
+import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

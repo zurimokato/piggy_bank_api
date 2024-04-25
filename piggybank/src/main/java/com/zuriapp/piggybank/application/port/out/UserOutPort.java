@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.application.port.out;
 
-import com.zuriapp.piggybank.domain.User;
+import com.zuriapp.piggybank.domain.models.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserOutPort {

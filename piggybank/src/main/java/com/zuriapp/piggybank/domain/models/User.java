@@ -1,4 +1,4 @@
-package com.zuriapp.piggybank.domain;
+package com.zuriapp.piggybank.domain.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

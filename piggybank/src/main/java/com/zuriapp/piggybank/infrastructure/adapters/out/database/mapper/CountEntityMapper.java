@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper;
 
-import com.zuriapp.piggybank.domain.Count;
+import com.zuriapp.piggybank.domain.models.Count;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CountEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

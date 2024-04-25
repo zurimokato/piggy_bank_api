@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.application.port.out;
 
-import com.zuriapp.piggybank.domain.Transaction;
+import com.zuriapp.piggybank.domain.models.Transaction;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;

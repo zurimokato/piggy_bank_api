@@ -14,11 +14,19 @@ public class BaseResponseDTO {
     private LocalDate transactionDate;
     private LocalTime transactionTime;
 
-    public BaseResponseDTO(){
+    private static BaseResponseDTO instance;
+    protected BaseResponseDTO(){
         this.status = HttpStatus.OK;
         this.code = "OK";
         this.transactionDate = LocalDate.now();
         this.transactionTime = LocalTime.now();
 
+    }
+
+    public static BaseResponseDTO getInstance() {
+        if (instance == null) {
+            instance = new BaseResponseDTO();
+        }
+        return instance;
     }
 }

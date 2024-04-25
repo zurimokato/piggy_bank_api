@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.application.port.out;
 
-import com.zuriapp.piggybank.domain.Category;
+import com.zuriapp.piggybank.domain.models.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

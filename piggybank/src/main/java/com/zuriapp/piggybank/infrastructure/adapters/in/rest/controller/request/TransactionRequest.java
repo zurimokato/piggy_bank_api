@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
-import com.zuriapp.piggybank.domain.Category;
-import com.zuriapp.piggybank.domain.Count;
+import com.zuriapp.piggybank.domain.models.Category;
+import com.zuriapp.piggybank.domain.models.Count;
 import com.zuriapp.piggybank.domain.enums.TransactionType;
 import lombok.Builder;
 import lombok.Data;

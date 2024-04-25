@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
 import com.zuriapp.piggybank.application.port.out.CountOutPort;
-import com.zuriapp.piggybank.domain.Count;
+import com.zuriapp.piggybank.domain.models.Count;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CountEntity;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.CountEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.CountCrudRepository;

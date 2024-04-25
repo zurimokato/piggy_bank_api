@@ -1,7 +1,5 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response;
 
-import com.zuriapp.piggybank.domain.Category;
-import com.zuriapp.piggybank.domain.Count;
 import com.zuriapp.piggybank.domain.enums.TransactionType;
 
 import java.math.BigDecimal;

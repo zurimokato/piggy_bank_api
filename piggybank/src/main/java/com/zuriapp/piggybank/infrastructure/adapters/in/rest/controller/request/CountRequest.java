@@ -1,6 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
-import com.zuriapp.piggybank.domain.Person;
+import com.zuriapp.piggybank.domain.models.Person;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
 import lombok.Builder;
