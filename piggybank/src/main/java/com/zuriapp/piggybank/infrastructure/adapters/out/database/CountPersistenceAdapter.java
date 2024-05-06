@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class CountPersistenceAdapter implements CountOutPort {
-    private final CountCrudRepository crudRepository;
-    private final CountEntityMapper mapper;
+    private final CountCrudRepository countCrudRepository;
+    private final CountEntityMapper countEntityMapper;
     @Value("${response.notfound.message}")
     private String notFoundMessage;
     @Override
     public Count save(Count count) throws Exception {
         try{
-            return mapper.toDomain( crudRepository.save(mapper.toEntity(count)));
+            return countEntityMapper.toDomain( countCrudRepository.save(countEntityMapper.toEntity(count)));
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -31,17 +31,17 @@ public class CountPersistenceAdapter implements CountOutPort {
 
     @Override
     public Count getCountById(Long id) {
-        return  mapper.toDomain( crudRepository.findById(id).orElseThrow(
+        return  countEntityMapper.toDomain( countCrudRepository.findById(id).orElseThrow(
                 ()->new EntityNotFoundException(notFoundMessage)
         ));
     }
 
     @Override
     public Page<Count> getAllCountsByPerson(Long personId,Pageable pageable) {
-        Page<CountEntity>pages=crudRepository.findAllByPersonId(personId,pageable);
+        Page<CountEntity>pages= countCrudRepository.findAllByPersonId(personId,pageable);
         if(pages.isEmpty()){
             throw new EntityNotFoundException(notFoundMessage);
         }
-        return pages.map(mapper::toDomain);
+        return pages.map(countEntityMapper::toDomain);
     }
 }

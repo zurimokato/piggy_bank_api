@@ -18,13 +18,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryPersistenceAdapter implements CategoryOutPutPort {
     private final CategoryRepository categoryRepository;
-    private final CategoryEntityMapper mapper;
+    private final CategoryEntityMapper categoryEntityMapper;
     @Value("${response.notfound.message}")
     private String notFoundMessage;
     @Override
     public Category save(Category category) throws Exception {
         try{
-            return mapper.toDomain(categoryRepository.save(mapper.toEntity(category)));
+            return categoryEntityMapper.toDomain(categoryRepository.save(categoryEntityMapper.toEntity(category)));
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -33,7 +33,7 @@ public class CategoryPersistenceAdapter implements CategoryOutPutPort {
 
     @Override
     public Category findById(Long id) {
-        return categoryRepository.findById(id).map(mapper::toDomain).orElseThrow(()->new EntityNotFoundException(notFoundMessage));
+        return categoryRepository.findById(id).map(categoryEntityMapper::toDomain).orElseThrow(()->new EntityNotFoundException(notFoundMessage));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CategoryPersistenceAdapter implements CategoryOutPutPort {
         if(categoryEntityPage.isEmpty()){
             throw new EntityNotFoundException(notFoundMessage);
         }
-        return categoryEntityPage.map(mapper::toDomain);
+        return categoryEntityPage.map(categoryEntityMapper::toDomain);
     }
 
     @Override
@@ -52,6 +52,6 @@ public class CategoryPersistenceAdapter implements CategoryOutPutPort {
         if(categoryEntities.isEmpty()){
             throw new EntityNotFoundException(notFoundMessage);
         }
-        return categoryEntities.stream().map(mapper::toDomain).toList();
+        return categoryEntities.stream().map(categoryEntityMapper::toDomain).toList();
     }
 }

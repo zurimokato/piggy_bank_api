@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService implements FindUserUseCase {
 
-    private final JwtSecurityOutPutPort port;
+    private final JwtSecurityOutPutPort jwtSecurityOutPutPort;
 
     private final UserOutPort userPort;
 
@@ -29,8 +29,8 @@ public class UserService implements FindUserUseCase {
     @Override
     public User findUserByToken(String request) throws Exception {
         try {
-            String token = port.extractTokenFromHeader(request);
-            String userName = port.extractUserName(token);
+            String token = jwtSecurityOutPutPort.extractTokenFromHeader(request);
+            String userName = jwtSecurityOutPutPort.extractUserName(token);
 
             return userPort.findByUsername(userName);
         } catch (Exception exception) {

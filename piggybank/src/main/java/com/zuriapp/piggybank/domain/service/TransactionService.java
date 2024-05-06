@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class TransactionService implements CreateTransactionUseCase, FindTransactionUseCase {
-    private final TransactionOutPutPort port;
+    private final TransactionOutPutPort transactionOutPutPort;
 
     @Override
     public Transaction createTransaction(Transaction transaction) throws Exception {
 
         try {
-            return port.save(transaction);
+            return transactionOutPutPort.save(transaction);
         } catch (Exception e) {
             throw new Exception(e);
         }
@@ -30,11 +30,11 @@ public class TransactionService implements CreateTransactionUseCase, FindTransac
 
     @Override
     public Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable) {
-        return port.findAllByCount(countId,pageable);
+        return transactionOutPutPort.findAllByCount(countId,pageable);
     }
 
     @Override
     public Transaction findTransactionById(Long id) {
-        return port.findByTransactionId(id);
+        return transactionOutPutPort.findByTransactionId(id);
     }
 }
