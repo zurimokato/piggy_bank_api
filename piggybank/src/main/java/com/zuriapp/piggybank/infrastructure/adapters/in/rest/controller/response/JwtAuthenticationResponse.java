@@ -4,7 +4,8 @@ package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.respons
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

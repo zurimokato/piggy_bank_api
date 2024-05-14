@@ -6,7 +6,6 @@ import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.domain.dto.PageResponseDTO;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.TransactionAPI;
-import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.QueryTransactionRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.TransactionRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.TransactionResponse;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.mappers.TransactionRestMapper;

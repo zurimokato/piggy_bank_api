@@ -1,10 +1,12 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.domain.Pageable;
 
-@Data
+@Getter
+@Setter
 @Builder
 public class QueryCountRequest {
     private Long personId;

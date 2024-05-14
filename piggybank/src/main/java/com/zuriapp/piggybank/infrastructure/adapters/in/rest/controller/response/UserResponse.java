@@ -1,11 +1,12 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
-@Data
+@Getter
+@Setter
 @Builder
 public class UserResponse {
     private Long id;

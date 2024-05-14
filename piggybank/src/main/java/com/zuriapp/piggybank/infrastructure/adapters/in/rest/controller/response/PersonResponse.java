@@ -2,11 +2,13 @@ package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.respons
 
 import com.zuriapp.piggybank.domain.enums.Status;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Builder
 public class PersonResponse {
     private Long id;

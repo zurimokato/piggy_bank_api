@@ -4,13 +4,15 @@ import com.zuriapp.piggybank.domain.models.Person;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
-@Data
+@Getter
+@Setter
 @Builder
 public class CountRequest {
 

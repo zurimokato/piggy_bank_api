@@ -3,11 +3,13 @@ package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.respons
 import com.zuriapp.piggybank.domain.models.Person;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-@Data
+@Getter
+@Setter
 public class CountResponse {
 
     private Long id;

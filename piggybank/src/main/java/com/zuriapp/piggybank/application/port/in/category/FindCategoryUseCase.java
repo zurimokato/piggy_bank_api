@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface FindCategoryUseCase {
 
-    Page<Category> findAllCategories(Pageable request);
+    Page<Category> findAllCategories(Pageable request)throws Exception;
 
-    Category findCategoryById(Long id);
+    Category findCategoryById(Long id)throws Exception;
 
-    List<Category> findAllCategories();
+    List<Category> findAllCategories() throws Exception;
 }

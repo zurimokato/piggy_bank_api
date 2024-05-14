@@ -2,12 +2,14 @@ package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.respons
 
 
 import com.zuriapp.piggybank.domain.enums.CategoryType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 public class CategoryResponse {
 
     private Long id;

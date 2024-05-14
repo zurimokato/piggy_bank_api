@@ -2,13 +2,15 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database.entity;
 
 import com.zuriapp.piggybank.domain.enums.Status;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "PERSONAS")
 public class PersonEntity implements Serializable {

@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface FindTransactionUseCase {
-    Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable);
+    Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable) throws Exception;
 
-    Transaction findTransactionById(Long id);
+    Transaction findTransactionById(Long id) throws Exception;
 }

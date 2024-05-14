@@ -4,7 +4,6 @@ import com.zuriapp.piggybank.application.port.out.TransactionOutPutPort;
 import com.zuriapp.piggybank.domain.enums.TransactionType;
 import com.zuriapp.piggybank.domain.models.Category;
 import com.zuriapp.piggybank.domain.models.Transaction;
-import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.TransactionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -42,7 +40,7 @@ class TransactionServiceTest {
     }
 
     @Test
-    void findTransactionsByCount() {
+    void findTransactionsByCount() throws Exception {
         final Transaction req=getInstanceSaved();
         final Transaction req2=getInstanceSaved();
         List<Transaction> transactions = List.of(req,req2);
@@ -55,7 +53,7 @@ class TransactionServiceTest {
     }
 
     @Test
-    void findTransactionById() {
+    void findTransactionById() throws Exception {
         Mockito.when(transactionOutPutPort.findByTransactionId(Mockito.any(Long.class)))
                 .thenReturn(getInstanceSaved());
         var result=transactionService.findTransactionById(new Random().nextLong());

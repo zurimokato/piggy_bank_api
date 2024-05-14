@@ -29,12 +29,23 @@ public class TransactionService implements CreateTransactionUseCase, FindTransac
     }
 
     @Override
-    public Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable) {
-        return transactionOutPutPort.findAllByCount(countId,pageable);
+    public Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable) throws Exception {
+        try {
+            return transactionOutPutPort.findAllByCount(countId,pageable);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+
+        }
+
     }
 
     @Override
-    public Transaction findTransactionById(Long id) {
-        return transactionOutPutPort.findByTransactionId(id);
+    public Transaction findTransactionById(Long id) throws Exception {
+        try {
+            return transactionOutPutPort.findByTransactionId(id);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
     }
 }
