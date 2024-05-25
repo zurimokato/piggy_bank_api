@@ -7,7 +7,6 @@ import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.security.JwtSecurityOutPutPort;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignInRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignUpRequest;
-import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.JwtAuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;

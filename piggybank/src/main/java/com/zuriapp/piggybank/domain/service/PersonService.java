@@ -23,17 +23,25 @@ public class PersonService implements CreatePersonUseCase, FindPersonUseCase {
 
     @Override
     public Person createPerson(Person person) throws Exception {
-        User user = person.getUser();
-        user.setCreateTime(LocalDateTime.now());
-        final User saved = userOutPort.save(user);
-        person.setUser(saved);
-        person.setStatus(Status.ACTIVE);
-        person.setCreateTime(LocalDateTime.now());
-        return personPort.save(person);
+        try {
+            User user = person.getUser();
+            user.setCreateTime(LocalDateTime.now());
+            final User saved = userOutPort.save(user);
+            person.setUser(saved);
+            person.setStatus(Status.ACTIVE);
+            person.setCreateTime(LocalDateTime.now());
+            return personPort.save(person);
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public Person findPersonById(Long id) throws Exception {
-        return personPort.findById(id);
+        try {
+            return personPort.findById(id);
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }

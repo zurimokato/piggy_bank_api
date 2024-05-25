@@ -29,6 +29,31 @@ class TransactionTest {
     }
 
     @Test
+    void hashCodeTest() {
+        Transaction transaction = getInstance();
+        Transaction transaction2 = getInstance();
+        assertEquals(transaction.hashCode(), transaction2.hashCode());
+        assertEquals(transaction.equals(transaction2),transaction2.equals(transaction));
+    }
+
+    @Test
+    void hashCodeNotTest() {
+        Transaction transaction = getInstance();
+        Transaction transaction2 = getInstance();
+        transaction.setId(1L);
+        transaction2.setId(2L);
+        assertNotEquals(transaction.hashCode(), transaction2.hashCode());
+        assertNotEquals(transaction, transaction2);
+    }
+
+    @Test
+    void toStringTest() {
+        Transaction transaction = getInstance();
+        String toString = transaction.toString();
+        assertNotNull(toString);
+    }
+
+    @Test
     void getDescription() {
         Transaction transaction = getInstance();
         transaction.setDescription("description");

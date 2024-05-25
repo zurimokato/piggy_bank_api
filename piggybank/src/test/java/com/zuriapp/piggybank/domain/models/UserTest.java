@@ -42,7 +42,7 @@ class UserTest {
         User other = getInstance();
         other.setId(2L);
         assertNotEquals(user.hashCode(), other.hashCode());
-        assertNotEquals(user.equals(other),other.equals(user));
+        assertNotEquals(user, other);
     }
 
     @Test
