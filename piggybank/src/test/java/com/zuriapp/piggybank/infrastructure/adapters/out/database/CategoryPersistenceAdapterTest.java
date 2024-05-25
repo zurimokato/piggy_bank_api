@@ -15,7 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -80,7 +80,6 @@ class CategoryPersistenceAdapterTest {
    private CategoryEntity getCategoryEntity() {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setName("Test");
-        categoryEntity.setBudget(new BigDecimal(2));
         categoryEntity.setType(CategoryType.FIJO);
         return categoryEntity;
     }
@@ -94,7 +93,6 @@ class CategoryPersistenceAdapterTest {
     private Category getCategoryDomainSaved() {
         return Category.builder()
                 .id(1L).name("Test")
-                .budget(new BigDecimal(2))
                 .type(CategoryType.FIJO)
                 .build();
     }
@@ -102,7 +100,6 @@ class CategoryPersistenceAdapterTest {
     private Category getCategoryDomain() {
         return Category.builder()
                 .name("Test")
-                .budget(new BigDecimal(2))
                 .type(CategoryType.FIJO)
                 .build();
     }

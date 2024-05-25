@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -21,6 +22,7 @@ public class CategoryService implements CreateCategoryUseCase, FindCategoryUseCa
 
     @Override
     public Category createCategory(Category category) throws Exception {
+        category.setCreateTime(LocalDate.now());
         return categoryPort.save(category);
     }
 

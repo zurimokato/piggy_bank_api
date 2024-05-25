@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response;
 
+import com.zuriapp.piggybank.domain.enums.Status;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ public class UserResponse {
     private String username;
     private String password;
     private String email;
+    private Status status;
     private LocalDate createTime;
     private LocalDate updateTime;
 }

@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ public class CountService implements CreateCountUseCase, FindCountUseCase {
 
     @Override
     public Count createCount(Count count) throws Exception {
+        count.setCreateTime(LocalDateTime.now());
         return port.save(count);
     }
 

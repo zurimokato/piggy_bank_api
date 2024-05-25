@@ -1,26 +1,22 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
-
-import com.zuriapp.piggybank.domain.enums.CategoryType;
 import com.zuriapp.piggybank.domain.enums.Status;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-
-import java.time.LocalDate;
-
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @Builder
-public class CategoryRequest {
-
+public class BudgetRequest {
     private Long id;
-    private String name;
-    private CategoryType type;
-    private LocalDate createTime;
-    private LocalDate updateTime;
+    @NotNull
+    private BigDecimal budget;
+    private PersonRequest person;
+    private CategoryRequest category;
     private Status status;
-
 }

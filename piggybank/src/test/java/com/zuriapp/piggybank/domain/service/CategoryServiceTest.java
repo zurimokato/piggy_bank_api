@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +43,6 @@ class CategoryServiceTest {
 
     private static Category getCategory() {
         return Category.builder()
-                .budget(new BigDecimal(150000))
                 .name("test")
                 .type(CategoryType.FIJO)
                 .createTime(LocalDate.now())
@@ -53,7 +52,6 @@ class CategoryServiceTest {
     private static Category getCategoryCreated() {
         Random random = new Random();
         return Category.builder().id(random.nextLong())
-                .budget(new BigDecimal(random.nextLong()))
                 .name("test")
                 .type(CategoryType.FIJO)
                 .createTime(LocalDate.now())

@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
+import com.zuriapp.piggybank.domain.enums.Status;
 import com.zuriapp.piggybank.domain.models.Person;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
@@ -24,4 +25,6 @@ public class CountRequest {
     private Person person;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+    private Status status;
+
 }

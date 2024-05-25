@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
+import com.zuriapp.piggybank.domain.enums.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -26,4 +27,6 @@ public class UserRequest {
     @Size(min = 2, max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
     private String email;
+    private Status status;
+
 }

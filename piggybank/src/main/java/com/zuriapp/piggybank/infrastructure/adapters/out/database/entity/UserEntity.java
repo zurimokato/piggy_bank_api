@@ -2,6 +2,7 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zuriapp.piggybank.domain.enums.Role;
+import com.zuriapp.piggybank.domain.enums.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,8 +32,10 @@ public class UserEntity implements Serializable, UserDetails {
     private Role role;
     private LocalDate createTime;
     private LocalDate updateTime;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER)
     private PersonEntity person;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
 
     @JsonIgnore

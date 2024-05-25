@@ -3,6 +3,7 @@ package com.zuriapp.piggybank.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zuriapp.piggybank.domain.enums.Role;
+import com.zuriapp.piggybank.domain.enums.Status;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,6 +25,7 @@ public class User implements UserDetails {
     private String email;
     private Person person;
     private Role role;
+    private Status status;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 

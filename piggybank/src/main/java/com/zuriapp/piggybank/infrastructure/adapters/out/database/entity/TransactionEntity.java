@@ -26,11 +26,11 @@ public class TransactionEntity {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "counts_id")
     private CountEntity count;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categories_id")
     private CategoryEntity category;
 

@@ -19,7 +19,9 @@ public interface UserEntityMapper {
     @Mappings({
             @Mapping(target = "userName", source = "username"),
             @Mapping(target = "person.user", ignore = true),
-            @Mapping(target = "authorities", ignore = true)
+            @Mapping(target = "authorities", ignore = true),
+            @Mapping(target = "user.person.counts", ignore = true),
+            @Mapping(target = "user.person.counts.transactions", ignore = true),
 
     })
     UserEntity toEntity(User source);

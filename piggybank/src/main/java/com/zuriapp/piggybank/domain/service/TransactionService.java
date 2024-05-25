@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 
 @Slf4j
 @Service
@@ -21,6 +23,7 @@ public class TransactionService implements CreateTransactionUseCase, FindTransac
     public Transaction createTransaction(Transaction transaction) throws Exception {
 
         try {
+            transaction.setCreateTime(LocalDateTime.now());
             return transactionOutPutPort.save(transaction);
         } catch (Exception e) {
             throw new Exception(e);

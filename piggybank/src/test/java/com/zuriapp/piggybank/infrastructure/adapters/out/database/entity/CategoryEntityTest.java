@@ -3,7 +3,7 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database.entity;
 import com.zuriapp.piggybank.domain.enums.CategoryType;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -25,12 +25,6 @@ class CategoryEntityTest {
         assertNotNull(category.getName());
     }
 
-    @Test
-    void getBudget() {
-        CategoryEntity category=getCategoryEntity();
-        category.setBudget(new BigDecimal(1));
-        assertNotNull(category.getBudget());
-    }
 
     @Test
     void getType() {

@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,11 +40,7 @@ class CategoryTest {
         assertEquals(category.getType(), CategoryType.FIJO);
     }
 
-    @Test
-    void getBudget() {
-        Category category = getInstance();
-        category.setBudget(new BigDecimal(new Random().nextLong()));
-    }
+
 
     @Test
     void getCreateTime() {
