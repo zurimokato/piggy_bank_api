@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 public class BudgetResponse {
     private Long id;
     private BigDecimal budget;
+    private String name;
     private UserResponse user;
     private CategoryResponse category;
     private Status status;

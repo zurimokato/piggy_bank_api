@@ -11,6 +11,7 @@ import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CountEn
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.TransactionEntity;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.TransactionEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.TransactionRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
 class TransactionPersistenceAdapterTest {
@@ -67,6 +69,26 @@ class TransactionPersistenceAdapterTest {
         Mockito.when(transactionEntityMapper.toDomain(Mockito.any(TransactionEntity.class))).thenReturn(getTransactionSaved());
         var result = transactionPersistenceAdapter.findAllByCount(1L, pageable);
         assertNotNull(result);
+    }
+
+    @Test
+    void save_shouldThrowException_whenRepositoryThrowsException() {
+        Transaction transaction = getTransaction();
+        Mockito.when(transactionEntityMapper.toEntity(transaction)).thenReturn(getTransactionEntity());
+        Mockito.doThrow(new RuntimeException("Repository error")).when(transactionRepository).save(Mockito.any(TransactionEntity.class));
+
+        assertThatThrownBy(() -> transactionPersistenceAdapter.save(transaction))
+                .isInstanceOf(Exception.class)
+                .hasMessageContaining("Repository error");
+    }
+
+    @Test
+    void findByTransactionId_shouldThrowEntityNotFoundException_whenTransactionNotFound() {
+        Long transactionId = 1L;
+        Mockito.when(transactionRepository.findById(transactionId)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> transactionPersistenceAdapter.findByTransactionId(transactionId))
+                .isInstanceOf(EntityNotFoundException.class);
     }
 
     private Transaction getTransaction() {

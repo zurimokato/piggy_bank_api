@@ -28,7 +28,6 @@ public class UserEntity implements Serializable, UserDetails {
     private String password;
     private String email;
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_rol")
     private Role role;
     private LocalDate createTime;
     private LocalDate updateTime;
@@ -56,12 +55,12 @@ public class UserEntity implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return getStatus()==Status.ACTIVE;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return getStatus()==Status.ACTIVE;
     }
 
     @Override
@@ -71,6 +70,6 @@ public class UserEntity implements Serializable, UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return getStatus()==Status.ACTIVE;
     }
 }

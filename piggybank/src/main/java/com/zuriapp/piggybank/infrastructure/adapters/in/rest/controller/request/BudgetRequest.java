@@ -16,6 +16,7 @@ public class BudgetRequest {
     private Long id;
     @NotNull
     private BigDecimal budget;
+    private String name;
     private User user;
     private CategoryRequest category;
     private Status status;
