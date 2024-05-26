@@ -6,16 +6,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-@Mapper(componentModel = "spring", uses = {PersonEntityMapper.class})
+@Mapper(componentModel = "spring", uses = {UserEntityMapper.class})
 public interface CountEntityMapper {
     @Mappings({
-            @Mapping(target = "person",source = "person")
+            @Mapping(target = "user",source = "user")
 
     })
     Count toDomain(CountEntity entity);
 
     @Mappings({
-            @Mapping(target = "person",source = "person"),
+            @Mapping(target = "user",source = "user"),
             @Mapping(target = "transactions", ignore = true)
 
     })

@@ -51,11 +51,11 @@ class CountEntityTest {
     @Test
     void getPerson() {
         CountEntity category = getCountEntity();
-        PersonEntity person = new PersonEntity();
-        person.setFirstName("firstName");
-        person.setId(1L);
-        category.setPerson(person);
-        assertEquals(category.getPerson(), person);
+        UserEntity user = new UserEntity();
+        user.setUserName("firstName");
+        user.setId(1L);
+        category.setUser(user);
+        assertEquals(category.getUser(), user);
     }
 
     @Test

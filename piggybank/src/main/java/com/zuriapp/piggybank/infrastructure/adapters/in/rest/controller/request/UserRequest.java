@@ -18,9 +18,6 @@ public class UserRequest {
     @NotBlank
     @Size(min = 2, max = 16)
     private String username;
-    @NotNull
-    @NotBlank
-    @Size(min = 8)
     private String password;
     @NotNull
     @NotBlank

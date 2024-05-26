@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CountCrudRepository extends JpaRepository<CountEntity,Long> {
-    Page<CountEntity> findAllByPersonId(Long personId,Pageable pageable);
+    Page<CountEntity> findAllByUserId(Long userId, Pageable pageable);
 }

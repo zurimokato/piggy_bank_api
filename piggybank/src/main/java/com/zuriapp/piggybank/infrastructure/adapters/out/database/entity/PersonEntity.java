@@ -34,10 +34,6 @@ public class PersonEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = "users_id")
     private UserEntity user;
-    @OneToMany(mappedBy = "person",fetch = FetchType.LAZY)
-    private List<CountEntity> counts;
-    @OneToMany(mappedBy = "person",fetch = FetchType.LAZY)
-    private List<BudgetEntity>budgets;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

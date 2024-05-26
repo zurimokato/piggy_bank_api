@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BudgetRepository extends JpaRepository<BudgetEntity, Long> {
-    Page<BudgetEntity> findAllByPersonId(Long personId, Pageable pageable);
+    Page<BudgetEntity> findAllByUserId(Long userId, Pageable pageable);
 }

@@ -91,12 +91,12 @@ class PersonEntityTest {
 
     @Test
     void getCounts() {
-        PersonEntity personEntity = new PersonEntity();
+        UserEntity personEntity = new UserEntity();
         personEntity.setId(1L);
         CountEntity countEntity = new CountEntity();
         countEntity.setId(2L);
         countEntity.setName("name");
-        countEntity.setPerson(personEntity);
+        countEntity.setUser(personEntity);
         List<CountEntity>countEntityList= List.of(countEntity);
         personEntity.setCounts(countEntityList);
         assertEquals(countEntityList, personEntity.getCounts());
@@ -117,7 +117,4 @@ class PersonEntityTest {
         assertNotNull(personEntity.getUpdateTime());
     }
 
-    private PersonEntity getPersonEntity() {
-        return new PersonEntity();
-    }
 }

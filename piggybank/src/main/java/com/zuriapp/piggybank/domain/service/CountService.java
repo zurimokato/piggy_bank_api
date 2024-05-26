@@ -25,8 +25,8 @@ public class CountService implements CreateCountUseCase, FindCountUseCase {
     }
 
     @Override
-    public Page<Count> findCountUseCase(Long personId, Pageable pageable) throws Exception {
-        return port.getAllCountsByPerson(personId, pageable);
+    public Page<Count> findCountUseCase(Long userId, Pageable pageable) throws Exception {
+        return port.getAllCountsByPerson(userId, pageable);
     }
 
     @Override

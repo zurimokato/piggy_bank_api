@@ -23,7 +23,6 @@ public interface PersonEntityMapper {
             @Mapping(target = "user.person", ignore = true),
             @Mapping(target = "user.authorities", ignore = true),
             @Mapping(target = "user.userName", ignore = true),
-            @Mapping(target = "user.person.counts", ignore = true),
     })
     PersonEntity toEntity(Person person);
 }

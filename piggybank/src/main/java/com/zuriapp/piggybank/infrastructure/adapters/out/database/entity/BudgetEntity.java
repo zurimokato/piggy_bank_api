@@ -21,8 +21,10 @@ public class BudgetEntity implements Serializable {
     private BigDecimal budget;
     private Status status;
     @ManyToOne(fetch = FetchType.EAGER)
-    private PersonEntity person;
+    @JoinColumn(name = "users_id")
+    private UserEntity user;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categories_id")
     private CategoryEntity category;
 
 

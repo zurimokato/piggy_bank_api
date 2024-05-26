@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {PersonEntityMapper.class,BudgetEntityMapper.class})
 public interface UserEntityMapper {
 
 
@@ -20,8 +20,8 @@ public interface UserEntityMapper {
             @Mapping(target = "userName", source = "username"),
             @Mapping(target = "person.user", ignore = true),
             @Mapping(target = "authorities", ignore = true),
-            @Mapping(target = "user.person.counts", ignore = true),
-            @Mapping(target = "user.person.counts.transactions", ignore = true),
+            @Mapping(target = "counts", ignore = true),
+            @Mapping(target = "budgets", ignore = true),
 
     })
     UserEntity toEntity(User source);

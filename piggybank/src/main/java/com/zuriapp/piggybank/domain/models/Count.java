@@ -19,7 +19,7 @@ public class Count {
     private BigDecimal amount;
     private Currency currency;
     private Status status;
-    private Person person;
+    private User user;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 

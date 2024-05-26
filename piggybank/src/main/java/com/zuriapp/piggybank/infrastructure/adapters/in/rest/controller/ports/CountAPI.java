@@ -23,5 +23,5 @@ public interface CountAPI {
     @GetMapping("by-id")
     ResponseEntity<BaseDataResponse<CountResponse>> getCountById(@Valid @NotNull @PathParam("countId") Long countId) throws Exception;
     @GetMapping()
-    ResponseEntity<PageResponseDTO<CountResponse>>getCountByPerson(@Valid @NotNull @PathParam("idPerson")Long idPerson, Pageable pageable) throws Exception;
+    ResponseEntity<PageResponseDTO<CountResponse>>getCountByPerson(@Valid @NotNull @PathParam("userId")Long userId, Pageable pageable) throws Exception;
 }

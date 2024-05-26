@@ -4,7 +4,7 @@ import com.zuriapp.piggybank.application.port.out.CountOutPort;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
 import com.zuriapp.piggybank.domain.models.Count;
-import com.zuriapp.piggybank.domain.models.Person;
+import com.zuriapp.piggybank.domain.models.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -69,7 +69,7 @@ class CountServiceTest {
                 .name("BANCOLOMBIA")
                 .amount(new BigDecimal(new Random().nextLong()))
                 .currency(Currency.COP)
-                .person(Person.builder().id(1L).build())
+                .user(User.builder().id(1L).build())
                 .build();
     }
 
@@ -80,7 +80,7 @@ class CountServiceTest {
                 .name("BANCOLOMBIA")
                 .amount(new BigDecimal(new Random().nextLong()))
                 .currency(Currency.COP)
-                .person(Person.builder().id(1L).build())
+                .user(User.builder().id(1L).build())
                 .build();
     }
 }

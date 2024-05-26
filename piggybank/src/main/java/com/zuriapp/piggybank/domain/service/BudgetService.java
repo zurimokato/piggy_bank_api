@@ -22,8 +22,8 @@ public class BudgetService implements FindBudgetUseCase, CreateBudgetUseCase {
     }
 
     @Override
-    public Page<Budget> findBudgetByPerson(Long personId, Pageable pageable) {
-        return budgetOutPutPort.findAllByPerson(personId, pageable);
+    public Page<Budget> findBudgetByPerson(Long userId, Pageable pageable) {
+        return budgetOutPutPort.findAllByPerson(userId, pageable);
     }
 
     @Override

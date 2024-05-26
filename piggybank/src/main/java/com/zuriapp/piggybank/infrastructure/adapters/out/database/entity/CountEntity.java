@@ -3,6 +3,7 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database.entity;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
 import com.zuriapp.piggybank.domain.enums.Status;
+import com.zuriapp.piggybank.domain.models.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,8 +27,8 @@ public class CountEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToOne
-    @JoinColumn(name = "personas_id")
-    private PersonEntity person;
+    @JoinColumn(name = "users_id")
+    private UserEntity user;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<TransactionEntity> transactions;

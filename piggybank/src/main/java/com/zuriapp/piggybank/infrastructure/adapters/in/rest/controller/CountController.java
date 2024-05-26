@@ -42,9 +42,9 @@ public class CountController implements CountAPI {
     }
 
     @Override
-    public ResponseEntity<PageResponseDTO<CountResponse>> getCountByPerson(Long idPerson, Pageable pageable) throws Exception {
+    public ResponseEntity<PageResponseDTO<CountResponse>> getCountByPerson(Long userId, Pageable pageable) throws Exception {
         PageResponseDTO<CountResponse> response = new PageResponseDTO<>();
-        Page<CountResponse> page = findCountUseCase.findCountUseCase(idPerson,pageable).map(mapper::toResponse);
+        Page<CountResponse> page = findCountUseCase.findCountUseCase(userId,pageable).map(mapper::toResponse);
         response.setData(page);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

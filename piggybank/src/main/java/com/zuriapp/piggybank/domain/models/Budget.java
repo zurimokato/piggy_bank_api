@@ -16,6 +16,6 @@ public class Budget {
     private Long id;
     private BigDecimal budget;
     private Status status;
-    private PersonEntity person;
+    private User user;
     private CategoryEntity category;
 }

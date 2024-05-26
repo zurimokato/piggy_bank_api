@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface BudgetOutPutPort {
     Budget save(Budget budget);
     Budget findById(Long id);
-    Page<Budget> findAllByPerson(Long idPerson, Pageable pageable);
+    Page<Budget> findAllByPerson(Long userId, Pageable pageable);
 }

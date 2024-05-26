@@ -37,8 +37,8 @@ public class CountPersistenceAdapter implements CountOutPort {
     }
 
     @Override
-    public Page<Count> getAllCountsByPerson(Long personId,Pageable pageable) {
-        Page<CountEntity>pages= countCrudRepository.findAllByPersonId(personId,pageable);
+    public Page<Count> getAllCountsByPerson(Long userId,Pageable pageable) {
+        Page<CountEntity>pages= countCrudRepository.findAllByUserId(userId,pageable);
         if(pages.isEmpty()){
             throw new EntityNotFoundException(notFoundMessage);
         }

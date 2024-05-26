@@ -34,6 +34,11 @@ public class UserEntity implements Serializable, UserDetails {
     private LocalDate updateTime;
     @OneToOne(mappedBy = "user",fetch = FetchType.EAGER)
     private PersonEntity person;
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<CountEntity> counts;
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<BudgetEntity>budgets;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 

@@ -1,7 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request;
 
 import com.zuriapp.piggybank.domain.enums.Status;
-import jakarta.validation.constraints.NotBlank;
+import com.zuriapp.piggybank.domain.models.User;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class BudgetRequest {
     private Long id;
     @NotNull
     private BigDecimal budget;
-    private PersonRequest person;
+    private User user;
     private CategoryRequest category;
     private Status status;
 }

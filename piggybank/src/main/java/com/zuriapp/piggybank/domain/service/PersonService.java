@@ -26,8 +26,10 @@ public class PersonService implements CreatePersonUseCase, FindPersonUseCase {
         try {
             User user = person.getUser();
             user.setCreateTime(LocalDateTime.now());
-            final User saved = userOutPort.save(user);
-            person.setUser(saved);
+            if(user.getId()==null) {
+                final User saved = userOutPort.save(user);
+                person.setUser(saved);
+            }
             person.setStatus(Status.ACTIVE);
             person.setCreateTime(LocalDateTime.now());
             return personPort.save(person);

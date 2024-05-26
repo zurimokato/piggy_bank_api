@@ -19,7 +19,7 @@ public class CountResponse {
     private BigDecimal amount;
     private Currency currency;
     private Status status;
-    private Person person;
+    private UserResponse user;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

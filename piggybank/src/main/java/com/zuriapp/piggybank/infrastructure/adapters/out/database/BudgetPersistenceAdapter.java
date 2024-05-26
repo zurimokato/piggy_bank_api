@@ -28,7 +28,7 @@ public class BudgetPersistenceAdapter implements BudgetOutPutPort {
     }
 
     @Override
-    public Page<Budget> findAllByPerson(Long idPerson, Pageable pageable) {
-        return budgetRepository.findAllByPersonId(idPerson,pageable).map(budgetEntityMapper::toModel);
+    public Page<Budget> findAllByPerson(Long userId, Pageable pageable) {
+        return budgetRepository.findAllByUserId(userId,pageable).map(budgetEntityMapper::toModel);
     }
 }

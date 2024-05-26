@@ -3,9 +3,9 @@ package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 import com.zuriapp.piggybank.domain.enums.CountType;
 import com.zuriapp.piggybank.domain.enums.Currency;
 import com.zuriapp.piggybank.domain.models.Count;
-import com.zuriapp.piggybank.domain.models.Person;
+import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CountEntity;
-import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.PersonEntity;
+import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.UserEntity;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.CountEntityMapper;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.repository.CountCrudRepository;
 import org.junit.jupiter.api.Test;
@@ -55,7 +55,7 @@ class CountPersistenceAdapterTest {
     @Test
     void getAllCountsByPerson() {
         Mockito.when(countEntityMapper.toDomain(Mockito.any(CountEntity.class))).thenReturn(Count.builder().build());
-        Mockito.when(countCrudRepository.findAllByPersonId(Mockito.anyLong(), Mockito.any(Pageable.class))).thenReturn(getCountEntitiesPage());
+        Mockito.when(countCrudRepository.findAllByUserId(Mockito.anyLong(), Mockito.any(Pageable.class))).thenReturn(getCountEntitiesPage());
         var result = countPersistenceAdapter.getAllCountsByPerson(1L, Pageable.unpaged());
         assertNotNull(result);
     }
@@ -66,8 +66,8 @@ class CountPersistenceAdapterTest {
                 .type(CountType.BANCO)
                 .currency(Currency.COP)
                 .amount(new BigDecimal(1))
-                .person(Person.builder().id(1L)
-                        .firstName("John").build())
+                .user(User.builder().id(1L)
+                        .username("John").build())
                 .build();
     }
 
@@ -78,14 +78,14 @@ class CountPersistenceAdapterTest {
     }
 
     private CountEntity getEntityToSave() {
-        PersonEntity person = new PersonEntity();
-        person.setFirstName("John");
+        UserEntity person = new UserEntity();
+        person.setUserName("John");
         person.setId(1L);
         CountEntity countEntity = new CountEntity();
         countEntity.setAmount(new BigDecimal(1));
         countEntity.setCurrency(Currency.COP);
         countEntity.setType(CountType.BANCO);
-        countEntity.setPerson(person);
+        countEntity.setUser(person);
         return countEntity;
     }
 

@@ -8,5 +8,5 @@ public interface CountOutPort {
 
     Count save(Count count) throws Exception;
     Count getCountById(Long id)  throws Exception;
-    Page<Count> getAllCountsByPerson(Long id,Pageable pageable) throws Exception;
+    Page<Count> getAllCountsByPerson(Long userId,Pageable pageable) throws Exception;
 }

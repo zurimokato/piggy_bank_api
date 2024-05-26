@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -16,38 +15,38 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class CountTest {
 
-    private Count getInstance(){
+    private Count getInstance() {
         return Count.builder().build();
     }
 
     @Test
     void getId() {
         Count count = getInstance();
-        Long id =new Random().nextLong();
+        Long id = new Random().nextLong();
         count.setId(id);
-        assertEquals(id,count.getId());
+        assertEquals(id, count.getId());
     }
 
     @Test
     void getName() {
         Count count = getInstance();
         count.setName("Test");
-        assertEquals("Test",count.getName());
+        assertEquals("Test", count.getName());
     }
 
     @Test
     void getType() {
         Count count = getInstance();
         count.setType(CountType.BANCO);
-        assertEquals(CountType.BANCO,count.getType());
+        assertEquals(CountType.BANCO, count.getType());
     }
 
     @Test
     void getAmount() {
         Count count = getInstance();
-        BigDecimal amount= BigDecimal.valueOf(new Random().nextDouble());
-        count.setAmount(amount );
-        assertEquals(amount,count.getAmount());
+        BigDecimal amount = BigDecimal.valueOf(new Random().nextDouble());
+        count.setAmount(amount);
+        assertEquals(amount, count.getAmount());
 
     }
 
@@ -55,30 +54,30 @@ class CountTest {
     void getCurrency() {
         Count count = getInstance();
         count.setCurrency(Currency.COP);
-        assertEquals(Currency.COP,count.getCurrency());
+        assertEquals(Currency.COP, count.getCurrency());
     }
 
     @Test
     void getPerson() {
         Count count = getInstance();
-        Person person = new Person();
-        count.setPerson(person);
-        assertEquals(person,count.getPerson());
+        User user = new User();
+        count.setUser(user);
+        assertEquals(user, count.getUser());
     }
 
     @Test
     void getCreateTime() {
         Count count = getInstance();
-        LocalDateTime create=LocalDateTime.now();
+        LocalDateTime create = LocalDateTime.now();
         count.setCreateTime(create);
-        assertEquals(create,count.getCreateTime());
+        assertEquals(create, count.getCreateTime());
     }
 
     @Test
     void getUpdateTime() {
         Count count = getInstance();
-        LocalDateTime update=LocalDateTime.now();
+        LocalDateTime update = LocalDateTime.now();
         count.setUpdateTime(update);
-        assertEquals(update,count.getUpdateTime());
+        assertEquals(update, count.getUpdateTime());
     }
 }
