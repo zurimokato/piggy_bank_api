@@ -22,5 +22,6 @@ public class CategoryRequest {
     private LocalDate createTime;
     private LocalDate updateTime;
     private Status status;
+    private CategoryRequest category;
 
 }
