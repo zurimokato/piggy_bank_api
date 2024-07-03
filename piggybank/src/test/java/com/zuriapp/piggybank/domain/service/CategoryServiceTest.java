@@ -41,6 +41,14 @@ class CategoryServiceTest {
                 .save(Mockito.any(Category.class));
     }
 
+    @Test
+    void save_shouldThrowException() throws Exception {
+        final Category category = getCategory();
+        Mockito.when(outPutPort.save(Mockito.any(Category.class))).thenThrow(new Exception("No se pudo crear el  objeto"));
+        var result = assertThrows(Exception.class,()->categoryService.createCategory(category));
+        assertTrue(result.getMessage().contains("No se pudo crear el  objeto"));
+    }
+
     private static Category getCategory() {
         return Category.builder()
                 .name("test")

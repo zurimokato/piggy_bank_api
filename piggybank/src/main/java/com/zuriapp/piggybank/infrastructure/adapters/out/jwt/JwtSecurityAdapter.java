@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.jwt;
 
+import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.security.JwtSecurityOutPutPort;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -28,8 +29,12 @@ public class JwtSecurityAdapter implements JwtSecurityOutPutPort {
     }
 
     @Override
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(User userDetails) {
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put("username", userDetails.getUsername());
+        claims.put("userEmail", userDetails.getEmail());
+        claims.put("role",userDetails.getRole());
+        return generateToken(claims, userDetails);
     }
 
     @Override

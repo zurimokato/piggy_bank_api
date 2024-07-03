@@ -1,6 +1,7 @@
 package com.zuriapp.piggybank.domain.models;
 
 import com.zuriapp.piggybank.domain.enums.Role;
+import com.zuriapp.piggybank.domain.enums.Status;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -134,6 +135,13 @@ class UserTest {
     void isCredentialsNonExpired() {
         User user = getInstance();
         assertTrue(user.isCredentialsNonExpired());
+    }
+
+    @Test
+    void getStatus(){
+        User user=getInstance();
+        user.setStatus(Status.ACTIVE);
+        assertEquals(Status.ACTIVE,user.getStatus());
     }
 
     @Test

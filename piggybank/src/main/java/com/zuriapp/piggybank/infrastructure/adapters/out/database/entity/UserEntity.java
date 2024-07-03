@@ -55,12 +55,12 @@ public class UserEntity implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return getStatus()==Status.ACTIVE;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return getStatus()==Status.ACTIVE;
+        return true;
     }
 
     @Override
@@ -70,6 +70,6 @@ public class UserEntity implements Serializable, UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return getStatus()==Status.ACTIVE;
+        return true;
     }
 }

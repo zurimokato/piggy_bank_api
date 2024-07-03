@@ -1,18 +1,16 @@
 package com.zuriapp.piggybank.domain.models;
 
 import com.zuriapp.piggybank.domain.enums.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Person {
     private Long id;
     private String firstName;

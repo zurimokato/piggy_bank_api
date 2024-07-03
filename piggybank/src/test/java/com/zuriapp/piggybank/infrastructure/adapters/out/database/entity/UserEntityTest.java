@@ -1,6 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database.entity;
 
 import com.zuriapp.piggybank.domain.enums.Role;
+import com.zuriapp.piggybank.domain.enums.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -29,24 +30,28 @@ class UserEntityTest {
     @Test
     void isAccountNonExpired() {
         UserEntity user=getInstance();
+        user.setStatus(Status.ACTIVE);
         assertTrue(user.isAccountNonExpired());
     }
 
     @Test
     void isAccountNonLocked() {
         UserEntity user=getInstance();
+        user.setStatus(Status.ACTIVE);
         assertTrue(user.isAccountNonLocked());
     }
 
     @Test
     void isCredentialsNonExpired() {
         UserEntity user=getInstance();
+        user.setStatus(Status.ACTIVE);
         assertTrue(user.isCredentialsNonExpired());
     }
 
     @Test
     void isEnabled() {
         UserEntity user=getInstance();
+        user.setStatus(Status.ACTIVE);
         assertTrue(user.isEnabled());
     }
 

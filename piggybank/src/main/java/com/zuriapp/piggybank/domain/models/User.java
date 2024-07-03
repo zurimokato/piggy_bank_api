@@ -12,11 +12,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class User implements UserDetails {
 
     private Long id;
@@ -42,12 +42,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return getStatus()==Status.ACTIVE;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return getStatus()==Status.ACTIVE;
+        return true;
     }
 
     @Override
@@ -57,6 +57,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return getStatus()==Status.ACTIVE;
+        return true;
     }
 }
