@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.transaction.CreateTransactionUseCase;
 import com.zuriapp.piggybank.application.port.in.transaction.FindTransactionUseCase;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
@@ -27,20 +28,20 @@ public class TransactionController implements TransactionAPI {
     private final TransactionRestMapper mapper;
 
     @Override
-    public ResponseEntity<BaseResponseDTO> createTransaction(TransactionRequest transactionRequest) throws Exception {
+    public ResponseEntity<BaseResponseDTO> createTransaction(TransactionRequest transactionRequest) throws DomainException {
         transactionUseCase.createTransaction(mapper.toDomain(transactionRequest));
         return new ResponseEntity<>(BaseResponseDTO.getInstance(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<PageResponseDTO<TransactionResponse>> findTransactionsByCount(Long countId, Pageable pageable) throws Exception {
+    public ResponseEntity<PageResponseDTO<TransactionResponse>> findTransactionsByCount(Long countId, Pageable pageable) throws DomainException {
         PageResponseDTO<TransactionResponse> responseDTO = new PageResponseDTO<>();
         responseDTO.setData(findTransaction.findTransactionsByCount(countId,pageable).map(mapper::toResponse));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<BaseDataResponse<TransactionResponse>> findTransactionsById(Long transactionId) throws Exception {
+    public ResponseEntity<BaseDataResponse<TransactionResponse>> findTransactionsById(Long transactionId) throws DomainException {
         BaseDataResponse<TransactionResponse> response = new BaseDataResponse<>();
         response.setData(mapper.toResponse(findTransaction.findTransactionById(transactionId)));
         return new ResponseEntity<>(response, HttpStatus.OK);

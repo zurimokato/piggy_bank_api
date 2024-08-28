@@ -12,7 +12,7 @@ public interface CategoryRestMapper {
 
     @Mappings({
             @Mapping(target = "categories",ignore = true),
-            @Mapping(target = "category",source = "category"),
+            @Mapping(target = "categoryFather",source = "category"),
     })
 
     Category toDomain(CategoryRequest source);
@@ -20,7 +20,7 @@ public interface CategoryRestMapper {
 
     @Mappings({
             @Mapping(target = "categories",source = "categories"),
-            @Mapping(target = "category",source = "category"),
+            @Mapping(target = "category",source = "categoryFather"),
             @Mapping(target = "categories.category",ignore = true),
             @Mapping(target = "category.categories",ignore = true),
     })

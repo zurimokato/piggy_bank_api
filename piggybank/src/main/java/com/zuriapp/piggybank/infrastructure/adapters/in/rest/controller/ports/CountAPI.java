@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.domain.dto.PageResponseDTO;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CountAPI {
 
     @PostMapping
-    ResponseEntity<BaseResponseDTO>createCount(@Valid @RequestBody CountRequest request) throws Exception;
+    ResponseEntity<BaseResponseDTO>createCount(@Valid @RequestBody CountRequest request) throws DomainException;
     @GetMapping("by-id")
-    ResponseEntity<BaseDataResponse<CountResponse>> getCountById(@Valid @NotNull @PathParam("countId") Long countId) throws Exception;
+    ResponseEntity<BaseDataResponse<CountResponse>> getCountById(@Valid @NotNull @PathParam("countId") Long countId) throws DomainException;
     @GetMapping()
-    ResponseEntity<PageResponseDTO<CountResponse>>getCountByPerson(@Valid @NotNull @PathParam("userId")Long userId, Pageable pageable) throws Exception;
+    ResponseEntity<PageResponseDTO<CountResponse>>getCountByPerson(@Valid @NotNull @PathParam("userId")Long userId, Pageable pageable) throws DomainException;
 }

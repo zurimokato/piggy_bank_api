@@ -11,13 +11,13 @@ public interface CategoryEntityMapper {
 
     @Mappings({
             @Mapping(target = "categories",source = "categories"),
-            @Mapping(target = "category",source = "category"),
+            @Mapping(target = "categoryFather",source = "category"),
             @Mapping(target = "categories.category",ignore = true),
-            @Mapping(target = "category.categories",ignore = true),
+            @Mapping(target = "categoryFather.categories",ignore = true),
     })
 
     Category toDomain(CategoryEntity categoryEntity);
 
-    @Mapping(target = "category",source = "category")
+    @Mapping(target = "category",source = "categoryFather")
     CategoryEntity toEntity(Category category);
 }

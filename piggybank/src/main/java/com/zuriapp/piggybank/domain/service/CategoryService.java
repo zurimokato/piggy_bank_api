@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.category.CreateCategoryUseCase;
 import com.zuriapp.piggybank.application.port.in.category.FindCategoryUseCase;
 import com.zuriapp.piggybank.application.port.out.CategoryOutPutPort;
@@ -21,9 +22,14 @@ public class CategoryService implements CreateCategoryUseCase, FindCategoryUseCa
     private final CategoryOutPutPort categoryPort;
 
     @Override
-    public Category createCategory(Category category) throws Exception {
-        category.setCreateTime(LocalDate.now());
-        return categoryPort.save(category);
+    public Category createCategory(Category category) throws DomainException {
+       try{
+           category.setCreateTime(LocalDate.now());
+           return categoryPort.save(category);
+       }catch (Exception e){
+           throw new DomainException(e.getMessage());
+       }
+
     }
 
     @Override

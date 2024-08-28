@@ -1,6 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.authentication.IAuthenticationUseCase;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.AuthenticationAPI;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignInRequest;
@@ -23,7 +24,7 @@ public class AuthenticationController implements AuthenticationAPI {
     private final IAuthenticationUseCase authenticationUseCase;
 
     @Override
-    public ResponseEntity<JwtAuthenticationResponse> signUp(SignUpRequest request) throws Exception {
+    public ResponseEntity<JwtAuthenticationResponse> signUp(SignUpRequest request) throws DomainException {
         JwtAuthenticationResponse response = JwtAuthenticationResponse.builder().token(authenticationUseCase.signUp(request)).build();
         return ResponseEntity.ok(response);
     }

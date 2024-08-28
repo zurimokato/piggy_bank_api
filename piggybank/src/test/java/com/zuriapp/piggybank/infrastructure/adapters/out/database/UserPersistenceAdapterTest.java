@@ -39,7 +39,7 @@ class UserPersistenceAdapterTest {
     }
 
     @Test
-    void findByUsername() {
+    void findUsernameBy() {
         Mockito.when(userCrudRepository.findUserEntitiesByUserName(Mockito.any(String.class)))
                 .thenReturn(Optional.of(getUserEntitySaved()));
         Mockito.when(userEntityMapper.toDomain(Mockito.any(UserEntity.class))).thenReturn(getUserSaved());
@@ -58,12 +58,12 @@ class UserPersistenceAdapterTest {
     }
 
     @Test
-    void findByUserName() {
+    void findUserByName() {
 
         Mockito.when(userCrudRepository.findUserEntityByUserName(Mockito.any(String.class)))
                 .thenReturn(Optional.of(getUserEntitySaved()));
         Mockito.when(userEntityMapper.toDomain(Mockito.any(UserEntity.class))).thenReturn(getUserSaved());
-        var resp = userPersistenceAdapter.findByUserName("test");
+        var resp = userPersistenceAdapter.findUserByName("test");
         assertNotNull(resp);
     }
 

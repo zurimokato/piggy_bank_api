@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
+import com.zuriapp.piggybank.application.exceptions.InfrastructureException;
 import com.zuriapp.piggybank.application.port.out.CategoryOutPutPort;
 import com.zuriapp.piggybank.domain.models.Category;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CategoryEntity;
@@ -22,11 +23,11 @@ public class CategoryPersistenceAdapter implements CategoryOutPutPort {
     @Value("${response.notfound.message}")
     private String notFoundMessage;
     @Override
-    public Category save(Category category) throws Exception {
+    public Category save(Category category) throws InfrastructureException {
         try{
             return categoryEntityMapper.toDomain(categoryRepository.save(categoryEntityMapper.toEntity(category)));
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new InfrastructureException(e);
         }
 
     }

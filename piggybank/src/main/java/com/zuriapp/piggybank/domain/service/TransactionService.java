@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.transaction.CreateTransactionUseCase;
 import com.zuriapp.piggybank.application.port.in.transaction.FindTransactionUseCase;
 import com.zuriapp.piggybank.application.port.out.TransactionOutPutPort;
@@ -20,34 +21,34 @@ public class TransactionService implements CreateTransactionUseCase, FindTransac
     private final TransactionOutPutPort transactionOutPutPort;
 
     @Override
-    public Transaction createTransaction(Transaction transaction) throws Exception {
+    public Transaction createTransaction(Transaction transaction) throws DomainException {
 
         try {
             transaction.setCreateTime(LocalDateTime.now());
             return transactionOutPutPort.save(transaction);
         } catch (Exception e) {
-            throw new Exception(e);
+            throw new DomainException(e.getMessage());
         }
 
     }
 
     @Override
-    public Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable) throws Exception {
+    public Page<Transaction> findTransactionsByCount(Long countId, Pageable pageable) throws DomainException {
         try {
             return transactionOutPutPort.findAllByCount(countId,pageable);
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new DomainException(e.getMessage());
 
         }
 
     }
 
     @Override
-    public Transaction findTransactionById(Long id) throws Exception {
+    public Transaction findTransactionById(Long id) throws DomainException {
         try {
             return transactionOutPutPort.findByTransactionId(id);
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new DomainException(e.getMessage());
         }
 
     }

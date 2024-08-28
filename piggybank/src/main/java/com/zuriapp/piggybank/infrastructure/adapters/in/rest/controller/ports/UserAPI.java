@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.PersonRequest;
@@ -17,17 +18,17 @@ import org.springframework.web.bind.annotation.*;
 
 public interface UserAPI {
     @PostMapping()
-    ResponseEntity<BaseResponseDTO> createUser(@Valid @RequestBody PersonRequest request) throws Exception;
+    ResponseEntity<BaseResponseDTO> createUser(@Valid @RequestBody PersonRequest request) throws DomainException;
 
     @PutMapping()
-    ResponseEntity<BaseResponseDTO> updateUser(@NotNull @NotBlank @PathParam("userName") String userName, @RequestBody UserRequest request) throws Exception;
+    ResponseEntity<BaseResponseDTO> updateUser(@NotNull @NotBlank @PathParam("userName") String userName, @RequestBody UserRequest request) throws DomainException;
 
     @GetMapping()
-    ResponseEntity<BaseDataResponse<UserResponse>> getUser(@NotNull @NotBlank @PathParam("userName") String userName) throws Exception;
+    ResponseEntity<BaseDataResponse<UserResponse>> getUser(@NotNull @NotBlank @PathParam("userName") String userName) throws DomainException;
 
 
     @GetMapping("/session")
-    ResponseEntity<BaseDataResponse<UserResponse>> getUserByToken(@NotNull @NotBlank @RequestHeader("Authorization") String authorizationHeader) throws Exception;
+    ResponseEntity<BaseDataResponse<UserResponse>> getUserByToken(@NotNull @NotBlank @RequestHeader("Authorization") String authorizationHeader) throws DomainException;
 
 
 }

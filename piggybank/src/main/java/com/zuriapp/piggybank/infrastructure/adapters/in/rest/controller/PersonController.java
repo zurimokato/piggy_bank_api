@@ -1,6 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.person.FindPersonUseCase;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports.PersonAPI;
@@ -26,7 +27,7 @@ public class PersonController implements PersonAPI {
     private final PersonRestMapper mapper;
 
     @Override
-    public ResponseEntity<BaseDataResponse<PersonResponse>> getUser(Long id) throws Exception {
+    public ResponseEntity<BaseDataResponse<PersonResponse>> getUser(Long id) throws DomainException {
         BaseDataResponse<PersonResponse> response = new BaseDataResponse<>();
         response.setData(mapper.toResponse(findPersonByIdUseCase.findPersonById(id)));
         return new ResponseEntity<>(response, HttpStatus.OK);

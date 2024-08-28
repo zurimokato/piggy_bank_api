@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.AuthenticationException;
 import com.zuriapp.piggybank.application.port.in.authentication.IAuthenticationUseCase;
 import com.zuriapp.piggybank.application.port.out.UserOutPort;
 import com.zuriapp.piggybank.domain.enums.Role;
@@ -27,21 +28,26 @@ public class AuthenticationService implements IAuthenticationUseCase {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public String signUp(SignUpRequest request) throws Exception {
-        var user = User.builder().username(request.getUsername())
-                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
-                .status(Status.ACTIVE)
-                .createTime(LocalDateTime.now()).build();
-        port.save(user);
-        return jwtSecurityOutPutPort.generateToken(user);
+    public String signUp(SignUpRequest request) throws AuthenticationException {
+       try {
+           var user = User.builder().username(request.getUsername())
+                   .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+                   .role(Role.USER)
+                   .status(Status.ACTIVE)
+                   .createTime(LocalDateTime.now()).build();
+           port.save(user);
+           return jwtSecurityOutPutPort.generateToken(user);
+       }catch (Exception e){
+           throw new AuthenticationException(e.getMessage());
+       }
+
     }
 
     @Override
     public String signIn(SignInRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        var user = port.findByUserName(request.getUsername());
+        var user = port.findUserByName(request.getUsername());
         return jwtSecurityOutPutPort.generateToken(user);
     }
 }

@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
+import com.zuriapp.piggybank.application.exceptions.InfrastructureException;
 import com.zuriapp.piggybank.application.port.out.TransactionOutPutPort;
 import com.zuriapp.piggybank.domain.models.Transaction;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.TransactionEntity;
@@ -21,12 +22,12 @@ public class TransactionPersistenceAdapter implements TransactionOutPutPort {
     private String notFoundMessage;
 
     @Override
-    public Transaction save(Transaction transaction) throws Exception {
+    public Transaction save(Transaction transaction) throws InfrastructureException {
 
         try {
             return mapper.toDomain(transactionRepository.save(mapper.toEntity(transaction)));
         } catch (Exception e) {
-            throw new Exception(e.getMessage());
+            throw new InfrastructureException(e);
         }
     }
 

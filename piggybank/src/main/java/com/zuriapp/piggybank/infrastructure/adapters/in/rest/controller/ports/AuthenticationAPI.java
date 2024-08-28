@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignInRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.SignUpRequest;
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.JwtAuthenticationResponse;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface AuthenticationAPI {
     @PostMapping("/signUp")
-     ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody SignUpRequest request) throws Exception;
+     ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody SignUpRequest request) throws DomainException;
 
 
     @PostMapping("/signIn")

@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.person.CreatePersonUseCase;
 import com.zuriapp.piggybank.application.port.in.person.FindPersonUseCase;
 import com.zuriapp.piggybank.application.port.out.PersonOutPutPort;
@@ -22,7 +23,7 @@ public class PersonService implements CreatePersonUseCase, FindPersonUseCase {
     private final PersonOutPutPort personPort;
 
     @Override
-    public Person createPerson(Person person) throws Exception {
+    public Person createPerson(Person person) throws DomainException {
         try {
             User user = person.getUser();
             user.setCreateTime(LocalDateTime.now());
@@ -34,16 +35,16 @@ public class PersonService implements CreatePersonUseCase, FindPersonUseCase {
             person.setCreateTime(LocalDateTime.now());
             return personPort.save(person);
         }catch (Exception e) {
-            throw new Exception(e.getMessage());
+            throw new DomainException(e.getMessage());
         }
     }
 
     @Override
-    public Person findPersonById(Long id) throws Exception {
+    public Person findPersonById(Long id) throws DomainException {
         try {
             return personPort.findById(id);
         }catch (Exception e) {
-            throw new Exception(e.getMessage());
+            throw new DomainException(e.getMessage());
         }
     }
 }

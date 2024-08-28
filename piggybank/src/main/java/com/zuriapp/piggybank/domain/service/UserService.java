@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.user.FindUserUseCase;
 import com.zuriapp.piggybank.application.port.out.UserOutPort;
 import com.zuriapp.piggybank.domain.models.User;
@@ -18,23 +19,23 @@ public class UserService implements FindUserUseCase {
     private final UserOutPort userPort;
 
     @Override
-    public User findUserByUsername(String username) throws Exception {
+    public User findUserByUsername(String username) throws DomainException {
         try {
             return userPort.findByUsername(username);
         } catch (Exception e) {
-            throw new Exception(e.getMessage());
+            throw new DomainException(e.getMessage());
         }
     }
 
     @Override
-    public User findUserByToken(String request) throws Exception {
+    public User findUserByToken(String request) throws DomainException {
         try {
             String token = jwtSecurityOutPutPort.extractTokenFromHeader(request);
             String userName = jwtSecurityOutPutPort.extractUserName(token);
 
             return userPort.findByUsername(userName);
         } catch (Exception exception) {
-            throw new Exception(exception.getMessage());
+            throw new DomainException(exception.getMessage());
         }
     }
 }

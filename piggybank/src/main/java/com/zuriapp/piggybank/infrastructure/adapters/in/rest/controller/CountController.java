@@ -1,6 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.count.CreateCountUseCase;
 import com.zuriapp.piggybank.application.port.in.count.FindCountUseCase;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
@@ -29,20 +30,20 @@ public class CountController implements CountAPI {
     private final CountRestMapper mapper;
 
     @Override
-    public ResponseEntity<BaseResponseDTO> createCount(CountRequest request) throws Exception {
+    public ResponseEntity<BaseResponseDTO> createCount(CountRequest request) throws DomainException {
         createCountUseCase.createCount(mapper.toDomain(request));
         return new ResponseEntity<>(BaseResponseDTO.getInstance(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<BaseDataResponse<CountResponse>> getCountById(Long countId) throws Exception {
+    public ResponseEntity<BaseDataResponse<CountResponse>> getCountById(Long countId) throws DomainException {
         BaseDataResponse<CountResponse> response = new BaseDataResponse<>();
         response.setData(mapper.toResponse(findCountUseCase.findCountById(countId)));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<PageResponseDTO<CountResponse>> getCountByPerson(Long userId, Pageable pageable) throws Exception {
+    public ResponseEntity<PageResponseDTO<CountResponse>> getCountByPerson(Long userId, Pageable pageable) throws DomainException {
         PageResponseDTO<CountResponse> response = new PageResponseDTO<>();
         Page<CountResponse> page = findCountUseCase.findCountUseCase(userId,pageable).map(mapper::toResponse);
         response.setData(page);

@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
+import com.zuriapp.piggybank.application.exceptions.InfrastructureException;
 import com.zuriapp.piggybank.application.port.out.UserOutPort;
 import com.zuriapp.piggybank.domain.models.User;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.UserEntityMapper;
@@ -20,11 +21,11 @@ public class UserPersistenceAdapter implements UserOutPort {
     private String notFoundMessage;
 
     @Override
-    public User save(User user) throws Exception {
+    public User save(User user) throws InfrastructureException {
         try {
             return mapper.toDomain(userCrudRepository.saveAndFlush(mapper.toEntity(user)));
         } catch (Exception e) {
-            throw new Exception(e.getMessage());
+            throw new InfrastructureException(e);
         }
     }
 
@@ -48,7 +49,7 @@ public class UserPersistenceAdapter implements UserOutPort {
     }
 
     @Override
-    public User findByUserName(String userName) {
+    public User findUserByName(String userName) {
         return mapper.toDomain(userCrudRepository.findUserEntityByUserName(userName).orElseThrow(() ->
                 new  IllegalArgumentException("Invalid email or password")));
     }

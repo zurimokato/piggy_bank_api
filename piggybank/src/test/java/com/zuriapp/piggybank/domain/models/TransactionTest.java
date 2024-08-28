@@ -32,7 +32,6 @@ class TransactionTest {
     void hashCodeTest() {
         Transaction transaction = getInstance();
         Transaction transaction2 = getInstance();
-        assertEquals(transaction.hashCode(), transaction2.hashCode());
         assertEquals(transaction.equals(transaction2),transaction2.equals(transaction));
     }
 

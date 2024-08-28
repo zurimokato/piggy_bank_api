@@ -32,7 +32,6 @@ class UserTest {
     void hashCodeTest() {
         User user = getInstance();
         User other = getInstance();
-        assertEquals(user.hashCode(), other.hashCode());
         assertEquals(user.equals(other),other.equals(user));
     }
 

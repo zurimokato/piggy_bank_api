@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.out.CategoryOutPutPort;
 import com.zuriapp.piggybank.domain.enums.CategoryType;
 import com.zuriapp.piggybank.domain.models.Category;
@@ -44,8 +45,8 @@ class CategoryServiceTest {
     @Test
     void save_shouldThrowException() throws Exception {
         final Category category = getCategory();
-        Mockito.when(outPutPort.save(Mockito.any(Category.class))).thenThrow(new Exception("No se pudo crear el  objeto"));
-        var result = assertThrows(Exception.class,()->categoryService.createCategory(category));
+        Mockito.when(outPutPort.save(Mockito.any(Category.class))).thenThrow(new DomainException("No se pudo crear el  objeto"));
+        var result = assertThrows(DomainException.class,()->categoryService.createCategory(category));
         assertTrue(result.getMessage().contains("No se pudo crear el  objeto"));
     }
 

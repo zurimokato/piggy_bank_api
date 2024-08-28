@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.domain.dto.PageResponseDTO;
@@ -19,12 +20,12 @@ import java.util.List;
 
 public interface CategoryAPI {
     @PostMapping()
-    ResponseEntity<BaseResponseDTO>createCategory(@Valid @RequestBody CategoryRequest request) throws Exception;
+    ResponseEntity<BaseResponseDTO>createCategory(@Valid @RequestBody CategoryRequest request) throws DomainException;
     @GetMapping("/list")
-    ResponseEntity<BaseDataResponse<List<CategoryResponse>>> findList() throws Exception;
+    ResponseEntity<BaseDataResponse<List<CategoryResponse>>> findList() throws DomainException;
     @GetMapping("/page")
-    ResponseEntity<PageResponseDTO<CategoryResponse>> findPage(Pageable pageable) throws Exception;
+    ResponseEntity<PageResponseDTO<CategoryResponse>> findPage(Pageable pageable) throws DomainException;
     @GetMapping()
-    ResponseEntity<BaseDataResponse<CategoryResponse>> findById(@PathParam("categoryId") Long categoryId) throws Exception;
+    ResponseEntity<BaseDataResponse<CategoryResponse>> findById(@PathParam("categoryId") Long categoryId) throws DomainException;
 
 }

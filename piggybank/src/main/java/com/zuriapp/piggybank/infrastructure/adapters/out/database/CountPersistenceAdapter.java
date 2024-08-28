@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
+import com.zuriapp.piggybank.application.exceptions.InfrastructureException;
 import com.zuriapp.piggybank.application.port.out.CountOutPort;
 import com.zuriapp.piggybank.domain.models.Count;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.entity.CountEntity;
@@ -20,12 +21,12 @@ public class CountPersistenceAdapter implements CountOutPort {
     @Value("${response.notfound.message}")
     private String notFoundMessage;
     @Override
-    public Count save(Count count) throws Exception {
+    public Count save(Count count) throws InfrastructureException {
         try{
             return countEntityMapper.toDomain( countCrudRepository.save(countEntityMapper.toEntity(count)));
 
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new InfrastructureException(e);
         }
     }
 

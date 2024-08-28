@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -19,8 +18,8 @@ public class Category {
     private String name;
     private CategoryType type;
     private Status status;
-    private Category category;
-    private Set<Category> categories = new HashSet<>();
+    private Category categoryFather;
+    private Set<Category> categories;
     private LocalDate createTime;
     private LocalDate updateTime;
 }

@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.ports;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
 import com.zuriapp.piggybank.domain.dto.BaseResponseDTO;
 import com.zuriapp.piggybank.domain.dto.PageResponseDTO;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface TransactionAPI {
 
     @PostMapping()
-    ResponseEntity<BaseResponseDTO> createTransaction(@Valid @RequestBody TransactionRequest transactionRequest) throws Exception;
+    ResponseEntity<BaseResponseDTO> createTransaction(@Valid @RequestBody TransactionRequest transactionRequest) throws DomainException;
     @GetMapping("page")
-    ResponseEntity<PageResponseDTO<TransactionResponse>>findTransactionsByCount(@Valid @PathParam("countId") Long countId, Pageable pageable) throws Exception;
+    ResponseEntity<PageResponseDTO<TransactionResponse>>findTransactionsByCount(@Valid @PathParam("countId") Long countId, Pageable pageable) throws DomainException;
     @GetMapping()
-    ResponseEntity<BaseDataResponse<TransactionResponse>>findTransactionsById(@Valid @NotNull @PathParam("transactionId") Long transactionId) throws Exception;
+    ResponseEntity<BaseDataResponse<TransactionResponse>>findTransactionsById(@Valid @NotNull @PathParam("transactionId") Long transactionId) throws DomainException;
 }

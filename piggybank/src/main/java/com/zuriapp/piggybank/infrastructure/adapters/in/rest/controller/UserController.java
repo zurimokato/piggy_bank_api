@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.person.CreatePersonUseCase;
 import com.zuriapp.piggybank.application.port.in.user.FindUserUseCase;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
@@ -34,28 +35,28 @@ public class UserController implements UserAPI {
     private final PersonRestMapper personMapper;
 
     @Override
-    public ResponseEntity<BaseResponseDTO> createUser(PersonRequest request) throws Exception {
+    public ResponseEntity<BaseResponseDTO> createUser(PersonRequest request) throws DomainException {
         PersonResponse person = personMapper.toResponse(createUserUseCase.createPerson(personMapper.toDomain(request)));
         log.info("User created: {}", person);
         return new ResponseEntity<>(BaseResponseDTO.getInstance(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<BaseResponseDTO> updateUser(String userName, UserRequest request) throws Exception {
+    public ResponseEntity<BaseResponseDTO> updateUser(String userName, UserRequest request) throws DomainException {
         UserResponse user = mapper.toUserResponse(findUserUseCase.findUserByUsername(userName));
         log.info("User toUpdate: {}", user);
         return new ResponseEntity<>(BaseResponseDTO.getInstance(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<BaseDataResponse<UserResponse>> getUser(String userName) throws Exception {
+    public ResponseEntity<BaseDataResponse<UserResponse>> getUser(String userName) throws DomainException {
         BaseDataResponse<UserResponse> queryUserResponse = new BaseDataResponse<>();
         queryUserResponse.setData(mapper.toUserResponse(findUserUseCase.findUserByUsername(userName)));
         return new ResponseEntity<>(queryUserResponse, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<BaseDataResponse<UserResponse>> getUserByToken(String authorizationHeader) throws Exception {
+    public ResponseEntity<BaseDataResponse<UserResponse>> getUserByToken(String authorizationHeader) throws DomainException {
         UserResponse user = mapper.toUserResponse(findUserUseCase.findUserByToken(authorizationHeader));
         BaseDataResponse<UserResponse> queryUserResponse = new BaseDataResponse<>();
         queryUserResponse.setData(user);

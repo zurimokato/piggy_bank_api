@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.infrastructure.adapters.out.database;
 
+import com.zuriapp.piggybank.application.exceptions.InfrastructureException;
 import com.zuriapp.piggybank.application.port.out.PersonOutPutPort;
 import com.zuriapp.piggybank.domain.models.Person;
 import com.zuriapp.piggybank.infrastructure.adapters.out.database.mapper.PersonEntityMapper;
@@ -18,12 +19,12 @@ public class PersonPersistenceAdapter implements PersonOutPutPort {
     private String notFoundMessage;
 
     @Override
-    public Person save(Person person) throws Exception {
+    public Person save(Person person) throws InfrastructureException {
         try {
             return personEntityMapper.toDomain(personCrudRepository.saveAndFlush(personEntityMapper.toEntity(person)));
 
         }catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new InfrastructureException(e);
         }
     }
 

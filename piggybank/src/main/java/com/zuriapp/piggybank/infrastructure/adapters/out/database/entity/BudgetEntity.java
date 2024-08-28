@@ -18,7 +18,8 @@ public class BudgetEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal budget;
+    @Column(name = "budget")
+    private BigDecimal amount;
     private String name;
     private Status status;
     @ManyToOne(fetch = FetchType.EAGER)

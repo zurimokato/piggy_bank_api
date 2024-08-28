@@ -1,5 +1,6 @@
 package com.zuriapp.piggybank.domain.service;
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.count.CreateCountUseCase;
 import com.zuriapp.piggybank.application.port.in.count.FindCountUseCase;
 import com.zuriapp.piggybank.application.port.out.CountOutPort;
@@ -19,18 +20,33 @@ public class CountService implements CreateCountUseCase, FindCountUseCase {
     private final CountOutPort port;
 
     @Override
-    public Count createCount(Count count) throws Exception {
-        count.setCreateTime(LocalDateTime.now());
-        return port.save(count);
+    public Count createCount(Count count) throws DomainException {
+        try {
+            count.setCreateTime(LocalDateTime.now());
+            return port.save(count);
+        } catch (Exception e) {
+            throw new DomainException(e.getMessage());
+        }
+
     }
 
     @Override
-    public Page<Count> findCountUseCase(Long userId, Pageable pageable) throws Exception {
-        return port.getAllCountsByPerson(userId, pageable);
+    public Page<Count> findCountUseCase(Long userId, Pageable pageable) throws DomainException {
+        try {
+            return port.getAllCountsByPerson(userId, pageable);
+        } catch (Exception e) {
+            throw new DomainException(e.getMessage());
+        }
+
     }
 
     @Override
-    public Count findCountById(Long id) throws Exception {
-        return port.getCountById(id);
+    public Count findCountById(Long id) throws DomainException {
+        try {
+            return port.getCountById(id);
+        } catch (Exception e) {
+            throw new DomainException(e.getMessage());
+        }
+
     }
 }

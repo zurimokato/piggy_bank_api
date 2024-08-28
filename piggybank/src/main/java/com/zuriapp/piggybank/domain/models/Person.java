@@ -3,6 +3,7 @@ package com.zuriapp.piggybank.domain.models;
 import com.zuriapp.piggybank.domain.enums.Status;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class Person implements Serializable {
     private Long id;
     private String firstName;
     private String firstLastName;

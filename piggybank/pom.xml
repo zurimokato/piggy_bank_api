@@ -190,6 +190,23 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/entities/**</exclude>
+                                <exclude>**/SpringApplication</exclude>
+                                <exclude>**/dto/**</exclude>
+                                <exclude>**/models/**</exclude>
+                                <exclude>**/filter/**</exclude>
+                                <exclude>**/mapper/**</exclude>
+                                <exclude>**/mappers/**</exclude>
+                                <exclude>**/mappers/**</exclude>
+                                <exclude>**/response/**</exclude>
+                                <exclude>**/request/**</exclude>
+                                <exclude>**/entity/**</exclude>
+                                <exclude>**/controller/**</exclude>
+                                <exclude>**/exceptions/**</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

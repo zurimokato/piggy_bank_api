@@ -1,6 +1,7 @@
 package com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller;
 
 
+import com.zuriapp.piggybank.application.exceptions.DomainException;
 import com.zuriapp.piggybank.application.port.in.category.CreateCategoryUseCase;
 import com.zuriapp.piggybank.application.port.in.category.FindCategoryUseCase;
 import com.zuriapp.piggybank.domain.dto.BaseDataResponse;
@@ -31,13 +32,13 @@ public class CategoryController implements CategoryAPI {
     private final CategoryRestMapper mapper;
 
     @Override
-    public ResponseEntity<BaseResponseDTO> createCategory(CategoryRequest request) throws Exception {
+    public ResponseEntity<BaseResponseDTO> createCategory(CategoryRequest request) throws DomainException {
         createCategoryUseCase.createCategory(mapper.toDomain(request));
         return new ResponseEntity<>(BaseResponseDTO.getInstance(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<BaseDataResponse<List<CategoryResponse>>> findList() throws Exception {
+    public ResponseEntity<BaseDataResponse<List<CategoryResponse>>> findList() throws DomainException {
         List<CategoryResponse> responses = findByCategoryUseCase.findAllCategories().stream().map(mapper::toResponse).toList();
         BaseDataResponse<List<CategoryResponse>> response = new BaseDataResponse<>();
         response.setData(responses);
@@ -45,7 +46,7 @@ public class CategoryController implements CategoryAPI {
     }
 
     @Override
-    public ResponseEntity<PageResponseDTO<CategoryResponse>> findPage(Pageable pageable) throws Exception {
+    public ResponseEntity<PageResponseDTO<CategoryResponse>> findPage(Pageable pageable) throws DomainException {
         PageResponseDTO<CategoryResponse> response = new PageResponseDTO<>();
         Page<CategoryResponse> page = findByCategoryUseCase.findAllCategories(pageable).map(mapper::toResponse);
         response.setData(page);
@@ -53,7 +54,7 @@ public class CategoryController implements CategoryAPI {
     }
 
     @Override
-    public ResponseEntity<BaseDataResponse<CategoryResponse>> findById(Long categoryId) throws Exception {
+    public ResponseEntity<BaseDataResponse<CategoryResponse>> findById(Long categoryId) throws DomainException {
         CategoryResponse categoryResponse = mapper.toResponse(findByCategoryUseCase.findCategoryById(categoryId));
         BaseDataResponse<CategoryResponse> response = new BaseDataResponse<>();
         response.setData(categoryResponse);
