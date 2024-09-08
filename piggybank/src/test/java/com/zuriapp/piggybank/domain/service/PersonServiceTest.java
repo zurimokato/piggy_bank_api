@@ -34,7 +34,7 @@ class PersonServiceTest {
         Mockito.when(personOutPutPort.save(Mockito.any(Person.class))).thenReturn(saved);
         var result = personService.createPerson(person);
         assertNotNull(result);
-        assertEquals(saved.getId(), 1L);
+        assertEquals(1L,saved.getId());
     }
 
     @Test

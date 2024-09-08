@@ -16,7 +16,7 @@ class CountEntityTest {
     void getId() {
         CountEntity category = getCountEntity();
         category.setId(1L);
-        assertEquals(category.getId(), 1L);
+        assertEquals( 1L,category.getId());
     }
 
     @Test
@@ -30,14 +30,14 @@ class CountEntityTest {
     void getType() {
         CountEntity category = getCountEntity();
         category.setType(CountType.BANCO);
-        assertEquals(category.getType(), CountType.BANCO);
+        assertEquals(CountType.BANCO,category.getType() );
     }
 
     @Test
     void getCurrency() {
         CountEntity category = getCountEntity();
         category.setCurrency(Currency.COP);
-        assertEquals(category.getCurrency(), Currency.COP);
+        assertEquals(Currency.COP,category.getCurrency() );
 
     }
 
@@ -45,7 +45,7 @@ class CountEntityTest {
     void getAmount() {
         CountEntity category = getCountEntity();
         category.setAmount(new BigDecimal(1));
-        assertEquals(category.getAmount(), new BigDecimal(1));
+        assertEquals( new BigDecimal(1),category.getAmount());
     }
 
     @Test
@@ -55,7 +55,7 @@ class CountEntityTest {
         user.setUserName("firstName");
         user.setId(1L);
         category.setUser(user);
-        assertEquals(category.getUser(), user);
+        assertEquals(user,category.getUser());
     }
 
     @Test
@@ -67,7 +67,7 @@ class CountEntityTest {
         transaction.setId(1L);
         List<TransactionEntity> transactions = List.of(transaction);
         category.setTransactions(transactions);
-        assertEquals(category.getTransactions(), transactions);
+        assertEquals(transactions,category.getTransactions());
     }
 
     @Test

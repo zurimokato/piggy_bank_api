@@ -1,26 +1,17 @@
 package com.zuriapp.piggybank.domain.dto;
 
 import lombok.Data;
-import org.springframework.http.HttpStatus;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 public class BaseResponseDTO {
-    private HttpStatus status;
-    private String message;
-    private String code;
-    private LocalDate transactionDate;
-    private LocalTime transactionTime;
+    private String status;
+    private String result;
+    private ErrorResponseDTO error;
 
     private static BaseResponseDTO instance;
     protected BaseResponseDTO(){
-        this.status = HttpStatus.OK;
-        this.code = "OK";
-        this.transactionDate = LocalDate.now();
-        this.transactionTime = LocalTime.now();
-
+        this.status = "200";
+        this.result = "OK";
     }
 
     public static BaseResponseDTO getInstance() {
@@ -29,4 +20,5 @@ public class BaseResponseDTO {
         }
         return instance;
     }
+
 }

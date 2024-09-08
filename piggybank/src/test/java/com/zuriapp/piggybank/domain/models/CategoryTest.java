@@ -21,7 +21,7 @@ class CategoryTest {
     void getId() {
         Category category = getInstance();
         category.setId(1L);
-        assertEquals(category.getId(), 1L);
+        assertEquals(1L,category.getId());
 
     }
 
@@ -37,7 +37,7 @@ class CategoryTest {
         Category category = getInstance();
         category.setType(CategoryType.FIJO);
 
-        assertEquals(category.getType(), CategoryType.FIJO);
+        assertEquals(CategoryType.FIJO,category.getType());
     }
 
 
@@ -47,7 +47,7 @@ class CategoryTest {
         Category category = getInstance();
         LocalDate createTime = LocalDate.now();
         category.setCreateTime(createTime);
-        assertEquals(category.getCreateTime(), createTime);
+        assertEquals(createTime,category.getCreateTime());
     }
 
     @Test
@@ -55,7 +55,7 @@ class CategoryTest {
         Category category = getInstance();
         LocalDate updateTime = LocalDate.now();
         category.setUpdateTime(updateTime);
-        assertEquals(category.getUpdateTime(), updateTime);
+        assertEquals(updateTime,category.getUpdateTime());
     }
 
 

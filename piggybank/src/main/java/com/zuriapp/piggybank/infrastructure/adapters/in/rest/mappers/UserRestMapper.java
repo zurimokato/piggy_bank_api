@@ -5,7 +5,6 @@ import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring", uses = PersonRestMapper.class)
 public interface UserRestMapper {
@@ -13,11 +12,9 @@ public interface UserRestMapper {
     @Mapping(target = "password", ignore = true)
     UserResponse toUserResponse(User user);
 
-    @Mappings({
-            @Mapping(target = "createTime", ignore = true),
-            @Mapping(target = "updateTime", ignore = true),
-            @Mapping(target = "person", ignore = true),
-            @Mapping(target = "role", ignore = true),
-    })
+    @Mapping(target = "createTime", ignore = true)
+    @Mapping(target = "updateTime", ignore = true)
+    @Mapping(target = "person", ignore = true)
+    @Mapping(target = "role", ignore = true)
     User toDomain(UserRequest request);
 }

@@ -5,24 +5,19 @@ import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.request.
 import com.zuriapp.piggybank.infrastructure.adapters.in.rest.controller.response.CategoryResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface CategoryRestMapper {
 
-    @Mappings({
-            @Mapping(target = "categories",ignore = true),
-            @Mapping(target = "categoryFather",source = "category"),
-    })
 
+    @Mapping(target = "categories", ignore = true)
+    @Mapping(target = "categoryFather", source = "category")
     Category toDomain(CategoryRequest source);
 
 
-    @Mappings({
-            @Mapping(target = "categories",source = "categories"),
-            @Mapping(target = "category",source = "categoryFather"),
-            @Mapping(target = "categories.category",ignore = true),
-            @Mapping(target = "category.categories",ignore = true),
-    })
+    @Mapping(target = "categories", source = "categories")
+    @Mapping(target = "category", source = "categoryFather")
+    @Mapping(target = "categories.category", ignore = true)
+    @Mapping(target = "category.categories", ignore = true)
     CategoryResponse toResponse(Category source);
 }

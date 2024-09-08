@@ -108,6 +108,53 @@
         </dependency>
 
     </dependencies>
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.8.12</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>**/entities/**</exclude>
+                                        <exclude>**/SpringApplication</exclude>
+                                        <exclude>**/dto/**</exclude>
+                                        <exclude>**/models/**</exclude>
+                                        <exclude>**/filter/**</exclude>
+                                        <exclude>**/mapper/**</exclude>
+                                        <exclude>**/mappers/**</exclude>
+                                        <exclude>**/mappers/**</exclude>
+                                        <exclude>**/response/**</exclude>
+                                        <exclude>**/request/**</exclude>
+                                        <exclude>**/entity/**</exclude>
+                                        <exclude>**/controller/**</exclude>
+                                        <exclude>**/exceptions/**</exclude>
+                                        <exclude>**/jwt/**</exclude>
+                                        <exclude>**/PiggyBankApplication.class</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -205,6 +252,8 @@
                                 <exclude>**/entity/**</exclude>
                                 <exclude>**/controller/**</exclude>
                                 <exclude>**/exceptions/**</exclude>
+                                <exclude>**/jwt/**</exclude>
+                                <exclude>**/PiggyBankApplication.class</exclude>
                             </excludes>
                         </configuration>
                     </execution>
